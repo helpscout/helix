@@ -1,14 +1,17 @@
 {
-  "name": "helix",
+  "name": "@helpscout/helix",
+  "private": false,
   "version": "0.0.1",
-  "description": "",
+  "description": "A Faker-powered spec generator for Javascript",
   "main": "lib/index.js",
   "module": "es/index.js",
+  "license": "MIT",
   "scripts": {
     "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir lib",
     "build:es": "cross-env BABEL_ENV=modules babel src --out-dir es",
     "build": "npm run clean && npm run pretty && npm run build:commonjs && npm run build:es",
     "clean": "rimraf coverage lib es dist",
+    "coverage": "nyc report --temp-directory=coverage --reporter=text-lcov | coveralls",
     "dev": "npm run test:dev",
     "standard": "standard 'src/**/*.js'",
     "pretty": "npm run standard -- --fix",
@@ -18,7 +21,6 @@
     "test:dev": "node scripts/test.js --env=jsdom"
   },
   "author": "ItsJonQ <itsjonq@gmail.com> (http://jonquach.com)",
-  "license": "MIT",
   "dependencies": {
     "faker": "4.1.0",
     "prop-types": "15.6.0"
@@ -30,10 +32,21 @@
     "babel-plugin-add-module-exports": "0.2.1",
     "babel-preset-env": "1.6.1",
     "babel-preset-es2015": "6.24.1",
+    "coveralls": "3.0.0",
     "cross-env": "5.0.2",
     "jest": "21.2.1",
     "jest-cli": "21.2.1",
+    "nyc": "11.2.1",
     "rimraf": "2.6.1"
+  },
+  "nyc": {
+    "exclude": [
+      "config/**/*.js",
+      "es/**/*.js",
+      "lib/**/*.js",
+      "scripts/**/*.js"
+    ],
+    "cache": false
   },
   "jest": {
     "collectCoverageFrom": [
