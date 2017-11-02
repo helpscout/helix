@@ -29,12 +29,12 @@ const CustomerSpec = createSpec({
 const fixture = CustomerSpec.generate()
 
 // Output
-{
-  id: 12339041,
-  fname: 'Alice',
-  lname: 'Konigsberg',
-  company: 'Smiths Co.'
-}
+// {
+//   id: 12339041,
+//   fname: 'Alice',
+//   lname: 'Konigsberg',
+//   company: 'Smiths Co.'
+// }
 ```
 
 For a full list of Faker methods, check out [their documentation](https://github.com/marak/Faker.js/).
