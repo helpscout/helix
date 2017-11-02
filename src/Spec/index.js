@@ -1,20 +1,33 @@
 import faker from 'faker'
-import { cloneDeep, isObject, isFunction, mapValues } from 'lodash'
+import { cloneDeep, isObject, isFunction, isNumber, mapValues } from 'lodash'
+import Exception from '../utils/log'
 
 class Spec {
   constructor (props) {
     this.props = props
+    this.seedNumber = null
     return this
   }
 
-  generate () {
-    const newProps = generateProps(this.props)
+  generate (count = 0) {
+    if (!isNumber(count)) {
+      throw Exception('Spec.generate()', 'Argument must be a valid number.')
+    }
+    const newProps = count ?
+      [...Array(count)].map(() => {
+        this.seed(this.seedNumber)
+        return generateProps(this.props)
+      }) :
+      generateProps(this.props)
+
+    this.seedNumber = null
     this.seed() // resets Faker
     return newProps
   }
 
   seed (number) {
-    faker.seed(number)
+    this.seedNumber = number
+    faker.seed(this.seedNumber)
     return this
   }
 }
