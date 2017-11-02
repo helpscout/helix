@@ -1,4 +1,4 @@
-import { cloneDeep, isObject, isFunction, mapValues } from 'lodash'
+import { isObject, isFunction, mapValues } from 'lodash'
 import fakerLib from 'faker'
 
 /**
@@ -26,7 +26,7 @@ const remapFakerObject = (object) => {
  * Clones/enhances the Faker object
  * @returns object
  */
-const faker = remapFakerObject(cloneDeep(fakerLib))
+const faker = remapFakerObject(Object.assign({}, fakerLib))
 
 // Required to mention Faker functionality
 faker.seed = (...args) => fakerLib.seed(...args)

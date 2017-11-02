@@ -1,6 +1,5 @@
 import faker from 'faker'
 import {
-  cloneDeep,
   isArray,
   isFunction,
   isNumber,
@@ -58,10 +57,10 @@ class HelixSpec {
  * @returns object
  */
 const generateSpecs = (shape) => {
-  return mapValues(cloneDeep(shape), (value, key) => {
+  return mapValues(shape, (value, key) => {
     // Preserve array structures
     if (isArray(value)) {
-      return value.map(v => generateSpecs(v))
+      return value.map(val => generateSpecs(val))
     }
     // Recurse
     if (isObject(value) && !isFunction(value)) {
