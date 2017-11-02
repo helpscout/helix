@@ -16,6 +16,10 @@
     "dev": "npm run test:dev",
     "standard": "standard 'src/**/*.js'",
     "pretty": "npm run standard -- --fix",
+    "release:patch": "np patch --no-yarn",
+    "release:minor": "np minor --no-yarn",
+    "release:major": "np major --no-yarn",
+    "release": "npm run release:patch",
     "start": "npm run dev",
     "test": "npm run test:coverage",
     "test:coverage": "npm run test:dev -- --coverage",
@@ -38,6 +42,7 @@
     "cross-env": "5.0.2",
     "jest": "21.2.1",
     "jest-cli": "21.2.1",
+    "np": "2.16.1",
     "nyc": "11.2.1",
     "rimraf": "2.6.1"
   },
