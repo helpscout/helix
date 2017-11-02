@@ -4,12 +4,13 @@
   "version": "0.0.1",
   "description": "A Faker-powered spec generator for Javascript",
   "main": "lib/index.js",
-  "module": "es/index.js",
+  "module": "lib/index.es.js",
   "license": "MIT",
   "scripts": {
-    "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir lib",
-    "build:es": "cross-env BABEL_ENV=modules babel src --out-dir es",
-    "build": "npm run clean && npm run pretty && npm run build:commonjs && npm run build:es",
+    "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir lib --ignore *.test.js",
+    "build:es": "cross-env BABEL_ENV=modules babel src --out-file lib/index.es.js --ignore *.test.js",
+    "build:umd": "cross-env BABEL_ENV=umd babel src --out-dir dist --ignore *.test.js",
+    "build": "npm run clean && npm run pretty && npm run build:commonjs && npm run build:es && npm run build:umd",
     "clean": "rimraf coverage lib es dist",
     "coverage": "nyc report --temp-directory=coverage --reporter=text-lcov | coveralls",
     "dev": "npm run test:dev",
@@ -23,6 +24,7 @@
   "author": "ItsJonQ <itsjonq@gmail.com> (http://jonquach.com)",
   "dependencies": {
     "faker": "4.1.0",
+    "lodash": "4.17.4",
     "prop-types": "15.6.0"
   },
   "devDependencies": {

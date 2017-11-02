@@ -1,5 +1,5 @@
 {
-  "presets": ["./scripts/babel-preset-env", "es2015"],
+  "presets": ["./scripts/babel-preset-env"],
   "env": {
     "umd": {
       "plugins": [
