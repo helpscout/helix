@@ -50,6 +50,7 @@
   "nyc": {
     "exclude": [
       "config/**/*.js",
+      "dist/**/*.js",
       "es/**/*.js",
       "lib/**/*.js",
       "scripts/**/*.js"
