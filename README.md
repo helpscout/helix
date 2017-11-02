@@ -1,4 +1,4 @@
-# Helix 🔸
+# Helix 🔸 [![Build Status](https://travis-ci.org/helpscout/helix.svg?branch=master)](https://travis-ci.org/helpscout/helix)
 
 A [Faker](https://github.com/marak/Faker.js/)-powered fixture generator for Javascript.
 
