@@ -59,3 +59,9 @@ const CustomerSpec = createSpec({
 // Seeding with "12"
 const fixture = CustomerSpec.seed(12).generate()
 ```
+
+
+## TODO
+
+* [ ] Nested `Spec`s
+* [ ] Computed Faker values
