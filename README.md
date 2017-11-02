@@ -37,7 +37,7 @@ const fixture = CustomerSpec.generate()
 // }
 ```
 
-For a full list of Faker methods, check out [their documentation](https://github.com/marak/Faker.js/).
+For a full list of Faker methods, check out [their documentation](https://github.com/marak/Faker.js/#api-methods).
 
 
 ### Seeding
