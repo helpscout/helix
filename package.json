@@ -44,7 +44,8 @@
     "jest-cli": "21.2.1",
     "np": "2.16.1",
     "nyc": "11.2.1",
-    "rimraf": "2.6.1"
+    "rimraf": "2.6.1",
+    "standard": "10.0.3"
   },
   "nyc": {
     "exclude": [
