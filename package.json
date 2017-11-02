@@ -2,7 +2,7 @@
   "name": "@helpscout/helix",
   "private": false,
   "version": "0.0.1",
-  "description": "A Faker-powered spec generator for Javascript",
+  "description": "A Faker-powered fixture generator for Javascript",
   "main": "lib/index.js",
   "module": "lib/index.es.js",
   "license": "MIT",
