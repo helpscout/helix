@@ -22,7 +22,7 @@ import { createSpec, faker } from '@helpscout/helix'
 const CustomerSpec = createSpec({
   id: faker.random.number()
   fname: faker.name.firstName()
-  lname: faker.name.firstName()
+  lname: faker.name.lastName()
   company: faker.company.companyName()
 })
 
