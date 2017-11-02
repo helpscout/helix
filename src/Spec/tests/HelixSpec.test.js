@@ -1,20 +1,43 @@
-import Spec from '..'
+import HelixSpec from '..'
 import faker from '../../faker'
 
 describe('generate', () => {
+  test('Throw if argument is invalid', () => {
+    const person = new HelixSpec({
+      id: faker.random.number()
+    })
+    expect(() => { person.generate(true) }).toThrow()
+    expect(() => { person.generate('name') }).toThrow()
+    expect(() => { person.generate(false) }).toThrow()
+  })
+
   test('Generates fixtures from a spec object', () => {
-    const person = new Spec({
+    const person = new HelixSpec({
       id: faker.random.number()
     })
     const fixture = person.generate()
 
     expect(fixture.id).toBeTruthy()
   })
+
+  test('Can generate multiple specs', () => {
+    const MessageSpec = new HelixSpec({
+      id: faker.random.number(),
+      read: faker.random.boolean(),
+      timestamp: faker.date.past(),
+      message: faker.lorem.paragraph()
+    })
+
+    const fixture = MessageSpec.generate(5)
+
+    expect(Array.isArray(fixture)).toBeTruthy()
+    expect(fixture[0].id).not.toBe(fixture[1].id)
+  })
 })
 
 describe('seed', () => {
   test('Can be set', () => {
-    const person = new Spec({
+    const person = new HelixSpec({
       name: faker.name.firstName()
     })
 
@@ -31,7 +54,7 @@ describe('seed', () => {
   })
 
   test('Is unaffected by external faker.seed', () => {
-    const person = new Spec({
+    const person = new HelixSpec({
       name: faker.name.firstName()
     })
 
@@ -48,5 +71,19 @@ describe('seed', () => {
     expect(one.name).not.toBe(two.name)
     expect(two.name).not.toBe(three.name)
     expect(one.name).toBe(three.name)
+  })
+
+  test('Can generate multiple specs, but with the same seed', () => {
+    const MessageSpec = new HelixSpec({
+      id: faker.random.number(),
+      read: faker.random.boolean(),
+      timestamp: faker.date.past(),
+      message: faker.lorem.paragraph()
+    })
+
+    const fixture = MessageSpec.seed(4).generate(5)
+
+    expect(Array.isArray(fixture)).toBeTruthy()
+    expect(fixture[0].id).toBe(fixture[1].id)
   })
 })
