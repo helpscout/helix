@@ -1,28 +1,46 @@
 import faker from 'faker'
-import { cloneDeep, isObject, isFunction, isNumber, mapValues } from 'lodash'
+import {
+  cloneDeep,
+  isArray,
+  isFunction,
+  isNumber,
+  isObject,
+  mapValues
+} from 'lodash'
 import Exception from '../utils/log'
 
-class Spec {
-  constructor (props) {
-    this.props = props
+/**
+ * Class for a HelixSpec definition. This class contains methods to
+ * generate the final fixture object, as well as methods to seed Faker
+ * fixture data.
+ *
+ * @param object    $shape     Fixture shape, that contains Faker render API
+ *
+ * @returns class
+ */
+class HelixSpec {
+  constructor (shape) {
+    this.shape = shape
     this.seedNumber = null
     return this
   }
 
   generate (count = 0) {
     if (!isNumber(count)) {
-      throw Exception('Spec.generate()', 'Argument must be a valid number.')
+      throw Exception('HelixSpec.generate()', 'Argument must be a valid number.')
     }
-    const newProps = count ?
-      [...Array(count)].map(() => {
+
+    const generatedSpecs = count
+      ? [...Array(count)].map(() => {
+        // Respect seed value for multi-generated specs
         this.seed(this.seedNumber)
-        return generateProps(this.props)
-      }) :
-      generateProps(this.props)
+        return generateSpecs(this.shape)
+      })
+      : generateSpecs(this.shape)
 
     this.seedNumber = null
     this.seed() // resets Faker
-    return newProps
+    return generatedSpecs
   }
 
   seed (number) {
@@ -32,11 +50,24 @@ class Spec {
   }
 }
 
-const generateProps = (props) => {
-  return mapValues(cloneDeep(props), (value, key) => {
-    if (isObject(value) && !isFunction(value)) {
-      return generateProps(value)
+/**
+ * Recursively instantiates the Helix version of Faker methods.
+ *
+ * @param object    $shape     Fixture shape, that contains Faker render API
+ *
+ * @returns object
+ */
+const generateSpecs = (shape) => {
+  return mapValues(cloneDeep(shape), (value, key) => {
+    // Preserve array structures
+    if (isArray(value)) {
+      return value.map(v => generateSpecs(v))
     }
+    // Recurse
+    if (isObject(value) && !isFunction(value)) {
+      return generateSpecs(value)
+    }
+    // Instantiate!
     if (isFunction(value)) {
       return value()
     }
@@ -44,4 +75,4 @@ const generateProps = (props) => {
   })
 }
 
-export default Spec
+export default HelixSpec

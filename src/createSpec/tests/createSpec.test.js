@@ -43,3 +43,37 @@ test('Generates a Spec with multiple keys', () => {
   expect(typeof fixture.location.country).toBe('string')
   expect(typeof fixture.location.city).toBe('string')
 })
+
+test('Can generate nested Specs', () => {
+  const MessageSpec = createSpec({
+    id: faker.random.number(),
+    read: faker.random.boolean(),
+    timestamp: faker.date.past(),
+    message: faker.lorem.paragraph()
+  })
+
+  const ConvoSpec = createSpec({
+    from: {
+      name: faker.name.firstName(),
+      email: faker.internet.email()
+    },
+    to: {
+      name: faker.name.firstName(),
+      email: faker.internet.email()
+    },
+    messages: MessageSpec.generate(5)
+  })
+
+  const fixture = ConvoSpec.generate()
+
+  expect(typeof fixture.from).toBe('object')
+  expect(typeof fixture.from.name).toBe('string')
+  expect(typeof fixture.from.email).toBe('string')
+  expect(typeof fixture.to).toBe('object')
+  expect(typeof fixture.to.name).toBe('string')
+  expect(typeof fixture.to.email).toBe('string')
+  expect(Array.isArray(fixture.messages)).toBeTruthy()
+  expect(fixture.messages.length).toBe(5)
+  expect(typeof fixture.messages[0].id).toBe('number')
+  expect(typeof fixture.messages[0].message).toBe('string')
+})

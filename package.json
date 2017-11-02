@@ -28,8 +28,7 @@
   "author": "ItsJonQ <itsjonq@gmail.com> (http://jonquach.com)",
   "dependencies": {
     "faker": "4.1.0",
-    "lodash": "4.17.4",
-    "prop-types": "15.6.0"
+    "lodash": "4.17.4"
   },
   "devDependencies": {
     "babel-cli": "6.24.1",
