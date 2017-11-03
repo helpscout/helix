@@ -7,4 +7,8 @@ Helix allows you to quickly (and reliably) generate fixture data to be hydrated 
 
 ## Table of Contents
 
-* [Guide](./guides): Get Started with Helix
+* **[Guide](./guides)** (Get Started with Helix)
+  1. [Introduction](./guides)
+  2. [Creating a spec](./create-spec.md)
+  3. [Seeding](./seeding.md)
+  4. [Generating multiple fixtures](./multi-generate.md)
