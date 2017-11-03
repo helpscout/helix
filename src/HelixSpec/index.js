@@ -1,12 +1,7 @@
 import faker from 'faker'
-import {
-  isArray,
-  isFunction,
-  isNumber,
-  isObject,
-  mapValues
-} from 'lodash'
+import { isNumber } from 'lodash'
 import Exception from '../utils/log'
+import generateSpecs from './generateSpecs'
 
 /**
  * Class for a HelixSpec definition. This class contains methods to
@@ -20,7 +15,7 @@ import Exception from '../utils/log'
 class HelixSpec {
   constructor (shape) {
     this.shape = shape
-    this.seedNumber = null
+    this.seedValue = undefined
     return this
   }
 
@@ -33,7 +28,6 @@ class HelixSpec {
     if (!isNumber(count)) {
       throw Exception('HelixSpec.generate()', 'Argument must be a valid number.')
     }
-
     if (max !== undefined) {
       if (!isNumber(max)) {
         throw Exception('HelixSpec.generate()', 'Max argument must be a valid number.')
@@ -47,48 +41,28 @@ class HelixSpec {
     const generatedSpecs = count
       ? [...Array(count)].map(() => {
         // Respect seed value for multi-generated specs
-        this.seed(this.seedNumber)
-        return generateSpecs(this.shape)
+        this.seed(this.seedValue)
+        return generateSpecs(this.shape, this.seedValue)
       })
-      : generateSpecs(this.shape)
+      : generateSpecs(this.shape, this.seedValue)
 
-    this.seedNumber = null
-    this.seed() // resets Faker
+    this.seedValue = undefined
     return generatedSpecs
   }
 
-  seed (number) {
-    this.seedNumber = number
-    faker.seed(this.seedNumber)
+  seed (seedValue) {
+    if (seedValue !== undefined && !isNumber(seedValue)) {
+      throw new Exception(
+        'HelixSpec.seed()',
+        'Seed value must be a valid number.'
+      )
+    }
+    if (seedValue !== undefined) {
+      this.seedValue = seedValue
+      faker.seed(this.seedValue)
+    }
     return this
   }
-}
-
-/**
- * Recursively instantiates the Helix version of Faker methods.
- *
- * @param object    $shape     Fixture shape, that contains Faker render API
- *
- * @returns object
- */
-const generateSpecs = (shape) => {
-  return mapValues(shape, (value, key) => {
-    // Preserve array structures
-    if (isArray(value)) {
-      return value.map(val => generateSpecs(val))
-    }
-    // Recurse
-    if (isObject(value) && !isFunction(value)) {
-      return value instanceof HelixSpec
-        ? value.generate()
-        : generateSpecs(value)
-    }
-    // Instantiate!
-    if (isFunction(value)) {
-      return value()
-    }
-    return value
-  })
 }
 
 export default HelixSpec
