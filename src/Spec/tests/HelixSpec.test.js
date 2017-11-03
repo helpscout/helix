@@ -1,5 +1,6 @@
 import HelixSpec from '..'
 import faker from '../../faker'
+import { times } from 'lodash'
 
 describe('generate', () => {
   test('Throw if argument is invalid', () => {
@@ -85,5 +86,21 @@ describe('seed', () => {
 
     expect(Array.isArray(fixture)).toBeTruthy()
     expect(fixture[0].id).toBe(fixture[1].id)
+  })
+
+  test('Can generate min -> max specs with the same seed', () => {
+    const MessageSpec = new HelixSpec({
+      id: faker.random.number(),
+      read: faker.random.boolean(),
+      timestamp: faker.date.past(),
+      message: faker.lorem.paragraph()
+    })
+
+    times(10, (index) => {
+      const fixture = MessageSpec.seed(index).generate(1, 5)
+      expect(Array.isArray(fixture)).toBeTruthy()
+      expect(fixture.length).toBeGreaterThanOrEqual(1)
+      expect(fixture.length).toBeLessThanOrEqual(5)
+    })
   })
 })

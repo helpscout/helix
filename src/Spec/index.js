@@ -24,9 +24,13 @@ class HelixSpec {
     return this
   }
 
-  generate (count = 0) {
+  generate (count = 0, max) {
     if (!isNumber(count)) {
       throw Exception('HelixSpec.generate()', 'Argument must be a valid number.')
+    }
+
+    if (max !== undefined) {
+      count = faker.random.number({min: count, max})
     }
 
     const generatedSpecs = count
