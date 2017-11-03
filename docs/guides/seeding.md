@@ -32,7 +32,7 @@ Dinosaur.seed(3).generate()
 
 // No more seeding!
 Dinosaur.generate()
-{ id: 83994, name: 'Eileen', location: 'Brazil' }
+// { id: 83994, name: 'Eileen', location: 'Brazil' }
 ```
 
 Congrats! You've successfully generate Spec fixtures with **consistent** results.
