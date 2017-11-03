@@ -1,25 +1,19 @@
-import { isObject, isFunction, mapValues } from 'lodash'
+import {
+  isFunction
+} from 'lodash'
 import fakerLib from 'faker'
+import computed from './computed'
+import remapFakerObject from './remapFakerObject'
 
 /**
- * Function remap the Faker class/object, to replace methods with functions
- * that don't automatically execute. This function works recursively to walk
- * down the entire Faker API tree.
+ * Returns a boolean based on whether the value is a computed Faker value.
  *
- * @param object    $object     Faker object/nested Faker object
+ * @param function    $value     Faker method
  *
- * @returns object
+ * @returns boolean
  */
-const remapFakerObject = (object) => {
-  return mapValues(object, (value, key) => {
-    if (isObject(value) && !isFunction(value)) {
-      return remapFakerObject(value)
-    }
-    if (isFunction(value)) {
-      return (...args) => () => value(...args)
-    }
-    return value
-  })
+export const isComputedValue = value => {
+  return isFunction(value) && value.fakerComputedValue
 }
 
 /**
@@ -32,5 +26,9 @@ const faker = remapFakerObject(Object.assign({}, fakerLib))
 faker.seed = (...args) => fakerLib.seed(...args)
 /* istanbul ignore next */
 faker.fake = (...args) => fakerLib.fake(...args)
+
+faker.computed = computed(faker)
+// Add property that allows generate() to check for computedProperty
+faker.computed.fakerComputedValue = true
 
 export default faker

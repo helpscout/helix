@@ -70,6 +70,24 @@ describe('generate', () => {
     expect(typeof fixture.fname).toBe('string')
     expect(typeof fixture.lname).toBe('string')
   })
+
+  test('Can generate computed values', () => {
+    const nameProps = {
+      fname: faker.name.firstName(),
+      lname: faker.name.lastName()
+    }
+    const PersonSpec = new HelixSpec({
+      id: faker.random.number(),
+      name: faker.computed(nameProps)(props => {
+        return `${props.fname} ${props.lname}`
+      })
+    })
+
+    const fixture = PersonSpec.generate()
+
+    expect(typeof fixture.name).toBe('string')
+    expect(fixture.name.split(' ').length).toBe(2)
+  })
 })
 
 describe('extend', () => {
@@ -115,6 +133,17 @@ describe('extend', () => {
 })
 
 describe('seed', () => {
+  test('Throws if argument is invalid', () => {
+    const person = new HelixSpec({
+      name: faker.name.firstName()
+    })
+
+    expect(() => { person.seed() }).not.toThrow()
+    expect(() => { person.seed('1') }).toThrow()
+    expect(() => { person.seed(true) }).toThrow()
+    expect(() => { person.seed({value: 2}) }).toThrow()
+  })
+
   test('Can be set', () => {
     const person = new HelixSpec({
       name: faker.name.firstName()
@@ -201,5 +230,23 @@ describe('External', () => {
       expect(fixture.length).toBeGreaterThanOrEqual(1)
       expect(fixture.length).toBeLessThanOrEqual(5)
     })
+  })
+
+  test('Can generate computed values with seed values', () => {
+    const nameProps = {
+      fname: faker.name.firstName(),
+      lname: faker.name.lastName()
+    }
+    const PersonSpec = new HelixSpec({
+      id: faker.random.number(),
+      name: faker.computed(nameProps)(props => {
+        return `${props.fname} ${props.lname}`
+      })
+    })
+
+    const fixture = PersonSpec.seed(2).generate()
+    const fixture2 = PersonSpec.seed(2).generate()
+
+    expect(fixture.name).toBe(fixture2.name)
   })
 })
