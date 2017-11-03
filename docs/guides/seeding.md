@@ -1,6 +1,6 @@
 # Seeding
 
-Seeding is a technique in [Faker](https://github.com/marak/Faker.js/#setting-a-randomness-seed) that allows you to get consistent results from your fixtures.
+[Seeding](../api/HelixSpec/seed.md) is a technique in [Faker](https://github.com/marak/Faker.js/#setting-a-randomness-seed) that allows you to get consistent results from your fixtures.
 
 
 ## Seeding from Specs

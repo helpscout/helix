@@ -14,3 +14,4 @@ Helix allows you to quickly (and reliably) generate fixture data to be hydrated 
   4. [Generating multiple fixtures](./multi-generate.md)
 * **API**
   * [HelixSpec](./api/HelixSpec)
+  * [compose](./api/compose.md)

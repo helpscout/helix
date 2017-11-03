@@ -1,6 +1,6 @@
 # Creating a Spec
 
-Let's get started in creating a Helix spec!
+Let's get started in creating a [Helix spec](../api/HelixSpec)!
 
 Using the `createSpec` function, we'll pass in the shape of our spec with the appropriate [Faker methods](https://github.com/marak/Faker.js/#api-methods).
 

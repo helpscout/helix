@@ -1,4 +1,5 @@
 import compose from '..'
+import createSpec from '../../createSpec'
 import HelixSpec from '../../HelixSpec'
 import faker from '../../faker'
 
@@ -63,4 +64,37 @@ test('Can combine HelixSpecs + objects', () => {
   expect(typeof fixture.message).toBe('string')
   expect(fixture.fname).toBe('Linda')
   expect(fixture.lname).toBe('Lee')
+})
+
+test('Can compose 3 Specs, with other Faker methods + non-Faker methods', () => {
+  const Dinosaur = createSpec({
+    id: faker.random.number(),
+    name: faker.name.firstName(),
+    location: faker.address.country()
+  })
+
+  const MrDNA = createSpec({
+    name: 'Mr. DNA',
+    avatar: faker.image.avatar(),
+    email: faker.internet.email(),
+    jobTitle: 'Guide'
+  })
+
+  const User = createSpec({
+    uuid: faker.random.uuid(),
+    description: faker.lorem.sentence()
+  })
+
+  const MrDinosaurUser = compose(
+    Dinosaur,
+    MrDNA,
+    User
+  )
+
+  const fixture = MrDinosaurUser.generate()
+
+  expect(typeof fixture.id).toBe('number')
+  expect(typeof fixture.location).toBe('string')
+  expect(fixture.jobTitle).toBe('Guide')
+  expect(typeof fixture.description).toBe('string')
 })
