@@ -40,4 +40,4 @@ Congrats! You've successfully generate Spec fixtures with **consistent** results
 
 ## Up next
 
-Learn how to easy **["generate multiple"](./multi-generate.md)** fixtures!
+Learn how to easy **[generate multiple fixtures](./multi-generate.md)**!
