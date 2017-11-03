@@ -1,6 +1,7 @@
+import { times } from 'lodash'
 import HelixSpec from '..'
 import faker from '../../faker'
-import ExternalTestSpec from './ExternalTestSpec'
+import ExternalTestSpec from './ExternalTestSpec.fixture'
 
 describe('generate', () => {
   test('Throw if argument is invalid', () => {
@@ -10,6 +11,23 @@ describe('generate', () => {
     expect(() => { person.generate(true) }).toThrow()
     expect(() => { person.generate('name') }).toThrow()
     expect(() => { person.generate(false) }).toThrow()
+  })
+
+  test('Throw if max argument is invalid', () => {
+    const person = new HelixSpec({
+      id: faker.random.number()
+    })
+    expect(() => { person.generate(1, true) }).toThrow()
+    expect(() => { person.generate(1, 'name') }).toThrow()
+    expect(() => { person.generate(1, false) }).toThrow()
+  })
+
+  test('Throw if max argument is less than count argument', () => {
+    const person = new HelixSpec({
+      id: faker.random.number()
+    })
+    expect(() => { person.generate(10, 10) }).toThrow()
+    expect(() => { person.generate(10, 1) }).toThrow()
   })
 
   test('Generates fixtures from a spec object', () => {
@@ -167,5 +185,21 @@ describe('External', () => {
     expect(typeof fixture.id).toBe('number')
     expect(typeof fixture.fname).toBe('string')
     expect(typeof fixture.lname).toBe('string')
+  })
+
+  test('Can generate min -> max specs with the same seed', () => {
+    const MessageSpec = new HelixSpec({
+      id: faker.random.number(),
+      read: faker.random.boolean(),
+      timestamp: faker.date.past(),
+      message: faker.lorem.paragraph()
+    })
+
+    times(10, (index) => {
+      const fixture = MessageSpec.seed(index).generate(1, 5)
+      expect(Array.isArray(fixture)).toBeTruthy()
+      expect(fixture.length).toBeGreaterThanOrEqual(1)
+      expect(fixture.length).toBeLessThanOrEqual(5)
+    })
   })
 })

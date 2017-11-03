@@ -2,6 +2,14 @@ import { isObject } from 'lodash'
 import HelixSpec from '../HelixSpec'
 import { Exception } from '../utils/log'
 
+/**
+ * Combines both HelixSpec class instance and regular objects to create a single
+ * new HelixSpec class instance.
+ *
+ * @param object    $specs     HelixSpec class instance or objects
+ *
+ * @returns HelixSpec instance
+ */
 const compose = (...specs) => {
   if (![...specs].length) {
     throw new Exception('compose', 'Argument(s) must be defined')

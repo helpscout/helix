@@ -1,7 +1,7 @@
 {
   "name": "@helpscout/helix",
   "private": false,
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A Faker-powered fixture generator for Javascript",
   "main": "lib/index.js",
   "module": "lib/index.es.js",
@@ -52,7 +52,8 @@
       "dist/**/*.js",
       "es/**/*.js",
       "lib/**/*.js",
-      "scripts/**/*.js"
+      "scripts/**/*.js",
+      "src/**/*.fixture.js"
     ],
     "cache": false
   },

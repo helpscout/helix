@@ -78,7 +78,7 @@ const Text = createSpec({
   message: faker.lorem.paragraph()
 })
 
-const fixture = Text.seed(50).generate()
+const fixture = Text.generate(5)
 
 // Output
 // [{}, {}, {}, {}, {}]
@@ -94,7 +94,7 @@ const Text = createSpec({
   message: faker.lorem.paragraph()
 })
 
-const fixture = Text.seed(50).generate()
+const fixture = Text.seed(50).generate(5)
 ```
 
 Note: Seed values aren't passed down from the parent Spec to children multi-specs.
