@@ -18,7 +18,7 @@ const Dinosaur = createSpec({
 })
 ```
 
-Perfect! We've defined our `Dinosaur`. However, if you `console.log` it, you'll noticed that it doesn't actually have any fixture data (yet).
+Perfect! Just like that, we've defined our `Dinosaur` (Dino DNA!). However, if you `console.log` it, you'll noticed that it doesn't actually have any fixture data (yet).
 
 ```js
 console.log(Dinosaur)
@@ -64,7 +64,7 @@ Dinosaur.generate()
 To keep your fixture, you can cache it as a regular JS variable:
 
 ```js
-const myDanosawr = Dinosaur.generate()
+const myDanosawur = Dinosaur.generate()
 // {
 //   id: 1231,
 //   name: 'Alice',
