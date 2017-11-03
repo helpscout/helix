@@ -79,4 +79,4 @@ And that's it! You've generated some fixture data for your Dinosaur.
 
 ## Up next
 
-Learn how to **["seed"](./seed.md)** your fixtures, for consistent results.
+Learn how to generate consistent fixture results by **[seeding](./seeding.md)**.
