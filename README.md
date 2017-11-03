@@ -129,5 +129,4 @@ const fixture = ConvoSpec.generate()
 
 ## TODO
 
-* [ ] Computed Faker values
-* [ ] Extend/override generated specs
+* [ ] Write better docs
