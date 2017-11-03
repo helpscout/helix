@@ -16,7 +16,6 @@
     "dev": "npm run test:dev",
     "standard": "standard 'src/**/*.js'",
     "pretty": "npm run standard -- --fix",
-    "prepare": "npm run test && npm run build",
     "release:patch": "np patch --no-yarn",
     "release:minor": "np minor --no-yarn",
     "release:major": "np major --no-yarn",
@@ -24,7 +23,8 @@
     "start": "npm run dev",
     "test": "npm run test:coverage",
     "test:coverage": "npm run test:dev -- --coverage",
-    "test:dev": "node scripts/test.js --env=jsdom"
+    "test:dev": "node scripts/test.js --env=jsdom",
+    "version": "npm run build"
   },
   "author": "ItsJonQ <itsjonq@gmail.com> (http://jonquach.com)",
   "dependencies": {
