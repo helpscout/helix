@@ -24,12 +24,23 @@ class HelixSpec {
     return this
   }
 
+  extend (...specs) {
+    this.shape = Object.assign(this.shape, ...specs)
+    return this
+  }
+
   generate (count = 0, max) {
     if (!isNumber(count)) {
       throw Exception('HelixSpec.generate()', 'Argument must be a valid number.')
     }
 
     if (max !== undefined) {
+      if (!isNumber(max)) {
+        throw Exception('HelixSpec.generate()', 'Max argument must be a valid number.')
+      }
+      if (max <= count) {
+        throw Exception('HelixSpec.generate()', 'Max argument must be larger than count argument.')
+      }
       count = faker.random.number({min: count, max})
     }
 
@@ -68,7 +79,9 @@ const generateSpecs = (shape) => {
     }
     // Recurse
     if (isObject(value) && !isFunction(value)) {
-      return generateSpecs(value)
+      return value instanceof HelixSpec
+        ? value.generate()
+        : generateSpecs(value)
     }
     // Instantiate!
     if (isFunction(value)) {
