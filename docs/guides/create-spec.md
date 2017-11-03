@@ -22,7 +22,7 @@ Perfect! Just like that, we've defined our `Dinosaur` (Dino DNA!). However, if y
 
 ```js
 console.log(Dinosaur)
-// { id: [Function], name: [Function], location: [Function]
+// { id: [Function], name: [Function], location: [Function] }
 ```
 
 The default Faker methods would have rendered some nice fixture data for you the moment you instantiate the methods. However, Helix's `faker` does not!
