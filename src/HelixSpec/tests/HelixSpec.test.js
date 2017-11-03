@@ -103,7 +103,7 @@ describe('seed', () => {
     })
 
     const one = person.seed(1).generate()
-    const two = person.seed(200).generate()
+    const two = person.seed(2).generate()
     const three = person.seed(1).generate()
 
     expect(typeof one.name).toBe('string')
@@ -119,11 +119,10 @@ describe('seed', () => {
       name: faker.name.firstName()
     })
 
-    faker.seed(99999999999)
+    faker.seed(4)
     const one = person.seed(1).generate()
-    faker.seed(888888)
-    const two = person.seed(200).generate()
-    faker.seed(6666)
+    const two = person.seed(2).generate()
+    faker.seed(3)
     const three = person.seed(1).generate()
 
     expect(typeof one.name).toBe('string')
@@ -142,7 +141,7 @@ describe('seed', () => {
       message: faker.lorem.paragraph()
     })
 
-    const fixture = MessageSpec.seed(4).generate(5)
+    const fixture = MessageSpec.seed(2).generate(5)
 
     expect(Array.isArray(fixture)).toBeTruthy()
     expect(fixture[0].id).toBe(fixture[1].id)
