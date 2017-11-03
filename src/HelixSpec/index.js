@@ -24,6 +24,11 @@ class HelixSpec {
     return this
   }
 
+  extend (...specs) {
+    this.shape = Object.assign(this.shape, ...specs)
+    return this
+  }
+
   generate (count = 0) {
     if (!isNumber(count)) {
       throw Exception('HelixSpec.generate()', 'Argument must be a valid number.')
@@ -64,7 +69,9 @@ const generateSpecs = (shape) => {
     }
     // Recurse
     if (isObject(value) && !isFunction(value)) {
-      return generateSpecs(value)
+      return value instanceof HelixSpec
+        ? value.generate()
+        : generateSpecs(value)
     }
     // Instantiate!
     if (isFunction(value)) {

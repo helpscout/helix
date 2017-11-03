@@ -1,5 +1,5 @@
 import { isObject } from 'lodash'
-import HelixSpec from '../Spec'
+import HelixSpec from '../HelixSpec'
 import { Exception } from '../utils/log'
 
 /**

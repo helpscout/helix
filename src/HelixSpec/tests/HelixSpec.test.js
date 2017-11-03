@@ -1,5 +1,6 @@
 import HelixSpec from '..'
 import faker from '../../faker'
+import ExternalTestSpec from './ExternalTestSpec'
 
 describe('generate', () => {
   test('Throw if argument is invalid', () => {
@@ -32,6 +33,66 @@ describe('generate', () => {
 
     expect(Array.isArray(fixture)).toBeTruthy()
     expect(fixture[0].id).not.toBe(fixture[1].id)
+  })
+
+  test('Can generate nested un-generated spec', () => {
+    const PersonSpec = new HelixSpec({
+      id: faker.random.number(),
+      fname: faker.name.firstName(),
+      lname: faker.name.lastName()
+    })
+
+    const NestedSpec = new HelixSpec({
+      external: PersonSpec
+    })
+
+    const fixture = NestedSpec.generate().external
+
+    expect(typeof fixture.id).toBe('number')
+    expect(typeof fixture.fname).toBe('string')
+    expect(typeof fixture.lname).toBe('string')
+  })
+})
+
+describe('extend', () => {
+  test('Can extend base specs', () => {
+    const person = new HelixSpec({
+      id: faker.random.number(),
+      fname: 'Ava'
+    })
+    person.extend({
+      fname: faker.name.firstName(),
+      lname: 'Smith'
+    })
+    const fixture = person.generate()
+
+    expect(typeof fixture.id).toBe('number')
+    expect(fixture.fname).not.toBe('Ava')
+    expect(typeof fixture.fname).toBe('string')
+    expect(fixture.lname).toBe('Smith')
+  })
+
+  test('Can extend base specs, multiple times', () => {
+    const person = new HelixSpec({
+      id: faker.random.number(),
+      fname: 'Ava'
+    })
+    person.extend({
+      fname: faker.name.firstName(),
+      lname: 'Smith'
+    }, {
+      count: faker.random.number()
+    }, {
+      active: true
+    })
+    const fixture = person.generate()
+
+    expect(typeof fixture.id).toBe('number')
+    expect(fixture.fname).not.toBe('Ava')
+    expect(typeof fixture.fname).toBe('string')
+    expect(fixture.lname).toBe('Smith')
+    expect(typeof fixture.count).toBe('number')
+    expect(fixture.active).toBe(true)
   })
 })
 
@@ -85,5 +146,27 @@ describe('seed', () => {
 
     expect(Array.isArray(fixture)).toBeTruthy()
     expect(fixture[0].id).toBe(fixture[1].id)
+  })
+})
+
+describe('External', () => {
+  test('Can load external test spec', () => {
+    const fixture = ExternalTestSpec.generate()
+
+    expect(typeof fixture.id).toBe('number')
+    expect(typeof fixture.fname).toBe('string')
+    expect(typeof fixture.lname).toBe('string')
+  })
+
+  test('Can nest external spec', () => {
+    const NestedSpec = new HelixSpec({
+      external: ExternalTestSpec
+    })
+
+    const fixture = NestedSpec.generate().external
+
+    expect(typeof fixture.id).toBe('number')
+    expect(typeof fixture.fname).toBe('string')
+    expect(typeof fixture.lname).toBe('string')
   })
 })
