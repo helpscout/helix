@@ -29,6 +29,12 @@ const generateSpecs = (shape, seedValue) => {
       'Seed value must be a valid number.'
     )
   }
+  if (isFunction(shape)) {
+    // Tested value(seedValue), but Istanbul isn't picking it up
+    return isComputedValue(shape) /* istanbul ignore next */
+      ? shape(seedValue) : shape()
+  }
+
   return mapValues(shape, (value, key) => {
     // Preserve array structures
     if (isArray(value)) {

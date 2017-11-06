@@ -22,6 +22,14 @@ describe('generate', () => {
     expect(() => { person.generate(1, false) }).toThrow()
   })
 
+  test('Can create a spec from a single function', () => {
+    const randomNumber = new HelixSpec(faker.random.number({ min: 100, max: 103 }))
+    const generate = randomNumber.generate()
+    expect(typeof generate).toBe('number')
+    expect(generate).toBeGreaterThanOrEqual(100)
+    expect(generate).toBeLessThanOrEqual(103)
+  })
+
   test('Throw if max argument is less than count argument', () => {
     const person = new HelixSpec({
       id: faker.random.number()
