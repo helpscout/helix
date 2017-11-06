@@ -2,8 +2,8 @@
 
 Being able to create computed values adds **extra** flexibility to generating your fixtures. With Helix, there are two ways you can do this:
 
-* "Easy-mode": Straight forward. Works. Less code. Less flexibility.
-* "Hard-mode": Slightly more code. Ultimate flexibility!
+* "**[Easy-mode](#easy-mode)**": Straight forward. Works. Less code. Less flexibility.
+* "**[Hard-mode](#hard-mode)**": Slightly more code. Ultimate flexibility!
 
 
 ## Easy-mode
