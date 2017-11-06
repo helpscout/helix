@@ -14,7 +14,7 @@ Get Started with Helix
 2. [Creating a spec](./guides/create-spec.md)
 3. [Seeding](./guides/seeding.md)
 4. [Generating multiple fixtures](./guides/multi-generate.md)
-5. [Nesting](./guides/nesting.md) (Docs coming soon)
+5. [Nesting](./guides/nesting.md)
 6. [Composing](./guides/composing.md) (Docs coming soon)
 
 
