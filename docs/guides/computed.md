@@ -68,6 +68,12 @@ faker.computed(props)(values => {
 The complete example looks something like this:
 
 ```js
+import { createSpec, faker } from '@helpscout/helix'
+
+const props = {
+  name: faker.name.firstName()
+}
+
 const Dinosaur = createSpec({
   id: faker.random.number(),
   fullName: faker.computed(props)(values => {
