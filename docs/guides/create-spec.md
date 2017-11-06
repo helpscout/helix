@@ -30,6 +30,26 @@ The default Faker methods would have rendered some nice fixture data for you the
 The actually render the fixture data, we'll need to generate it.
 
 
+## Single-value Specs
+
+You can also create a HelixSpec which generates a single value. For example, if you have a data type `DinoType` with a set of constant values, you can create a spec to capture this like so:
+
+```js
+const DinoType = createSpec(faker.random.arrayElement([
+  'tyrannosaurus-rex',
+  'velocirapter',
+  'stegosaurus'
+]))
+
+const Dinosaur = createSpec({
+  id: faker.random.number(),
+  name: faker.name.firstName(),
+  location: faker.address.country(),
+  type: DinoType
+})
+```
+
+
 ## Generating fixture data
 
 To generate the fixture data, use the `.generate()` method on your Spec. This returns a regular object in the shape of your Spec.
