@@ -42,10 +42,10 @@ You can generate an array of fixtures by passing in a `number` for the `count` a
 
 ```js
 Dinosaur.generate(2)
-//   [
-//     { id: 55079, name: 'Antone', location: 'Pitcairn Islands' },
-//     { id: 83994, name: 'Eileen', location: 'Brazil' }
-//   ]
+// [
+//   { id: 55079, name: 'Antone', location: 'Pitcairn Islands' },
+//   { id: 83994, name: 'Eileen', location: 'Brazil' }
+// ]
 ```
 
 
@@ -57,9 +57,9 @@ You can generate an array containing a random amount of fixtures between two `nu
 
 ```js
 Dinosaur.generate(1, 5)
-//   [
-//     { id: 76619, name: 'Tess', location: 'Jordan' },
-//     { id: 60633, name: 'Madeline', location: 'Uzbekistan' },
-//     { id: 5002, name: 'Crawford', location: 'Armenia' }
-//   ]
+// [
+//   { id: 76619, name: 'Tess', location: 'Jordan' },
+//   { id: 60633, name: 'Madeline', location: 'Uzbekistan' },
+//   { id: 5002, name: 'Crawford', location: 'Armenia' }
+// ]
 ```
