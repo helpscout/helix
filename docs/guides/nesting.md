@@ -48,6 +48,53 @@ Pterodactyl.generate()
 ```
 
 
+### Using imported Specs
+
+An external Spec file can be imported in and nested.
+
+`Wing.js`
+```js
+const Wing = createSpec({
+  id: faker.random.uuid(),
+  color: faker.commerce.color(),
+  size: faker.random.number()
+})
+
+export default Wing
+```
+
+`Pterodactyl.js`
+```js
+import Wing from './Wing'
+
+const Pterodactyl = createSpec({
+  id: faker.random.uuid(),
+  color: faker.commerce.color(),
+  location: faker.address.country(),
+  wing: Wing
+})
+```
+
+
+### Generating multiple nested Specs
+
+To create an array of nested Specs, pass in the `number` if fixtures you'd like to generate. Check out [our multi-Spec generating guide](./multi-generate.md) for more details.
+
+```js
+const LaserGun = createSpec({
+  id: faker.random.uuid(),
+  power: faker.random.number()
+})
+
+const MechaPterodactyl = createSpec({
+  id: faker.random.uuid(),
+  color: faker.commerce.color(),
+  location: faker.address.country(),
+  weapons: LaserGun.generate(5)
+})
+```
+
+
 ## Up next
 
 Learn how to **[compose multiple specs](./composing.md)** together!
