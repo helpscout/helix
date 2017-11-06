@@ -19,7 +19,7 @@ const myDanosawur = Dinosaur.generate()
 // }
 ```
 
-To generate multiple fixtures, simply pass the number you want generated into the `.generate()` method.
+To generate multiple fixtures, simply pass the `number` you want generated into the `.generate()` method.
 
 ```js
 const Dinosaur = createSpec({
