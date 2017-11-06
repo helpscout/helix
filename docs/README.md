@@ -16,6 +16,7 @@ Get Started with Helix
 4. [Generating multiple fixtures](./guides/multi-generate.md)
 5. [Nesting](./guides/nesting.md)
 6. [Composing](./guides/composing.md) (Docs coming soon)
+7. [Computed values](./guides/computed.md) (Docs coming soon)
 
 
 ### API
