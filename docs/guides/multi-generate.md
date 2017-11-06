@@ -56,4 +56,4 @@ Dinosaur.generate(1, 5)
 
 ## Up next
 
-Learn how to Specs within Specs by [nesting](./nesting.md).
+Learn how to Specs within Specs by **[nesting](./nesting.md)**.
