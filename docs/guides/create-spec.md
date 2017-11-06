@@ -29,6 +29,18 @@ The default Faker methods would have rendered some nice fixture data for you the
 
 The actually render the fixture data, we'll need to generate it.
 
+## Single-value Specs
+You can also create a HelixSpec which generates a single value. For example, if you have a data type UserType with a set of constant values, you can create a spec to capture this like so:
+
+```js
+const UserType = createSpec(faker.random.arrayElement(['user', 'guest', 'admin']))
+const User = createSpec({
+  id: faker.random.number(),
+  name: faker.name.firstName(),
+  location: faker.address.country(),
+  type: UserType
+})
+```
 
 ## Generating fixture data
 

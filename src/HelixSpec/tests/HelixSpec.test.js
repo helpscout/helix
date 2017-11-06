@@ -30,6 +30,18 @@ describe('generate', () => {
     expect(generate).toBeLessThanOrEqual(103)
   })
 
+  test('Can use single-value spec inside another Spec', () => {
+    const UserType = new HelixSpec(faker.random.arrayElement(['user', 'guest', 'admin']))
+    const User = new HelixSpec({
+      id: faker.random.number(),
+      name: faker.name.firstName(),
+      location: faker.address.country(),
+      type: UserType
+    })
+    const user = User.generate()
+    expect(user.type).toMatch(/(user)|(guest)|(admin)/)
+  })
+
   test('Throw if max argument is less than count argument', () => {
     const person = new HelixSpec({
       id: faker.random.number()
