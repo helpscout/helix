@@ -1,7 +1,21 @@
 # `computed(props)(callback)`
 
-
 To have more control over your computed values, you can use the `faker.computed()` method. `computed()` is a special method Helix has extended onto Faker.js, and isn't available in the default Faker.js library.
+
+### Arguments
+
+| Argument | Type | Description |
+| --- | --- | --- |
+| `props` | `object` | Shape of the Faker fixture data you want to compute. |
+| `callback` | `function` | Callback function that allows you to work with the Faker rendered data. |
+
+
+### Returns
+
+`Any`: Returns whatever you determine in the `callback` function.
+
+
+### Example
 
 The `faker.computed()` method accepts a single argument (`object`), that contains a shape of the data you'd like to work with. In the example below, we're only using `name`. You can add as many as you want (and nest as deeply as you want).
 
@@ -49,10 +63,3 @@ Dinosaur.generate()
 //   fullName: 'A B I G A I L'
 // }
 ```
-
-If you want something that's less verbose that just works, check out [easy-mode](#easy-mode).
-
-
-## That's it!
-
-👏 Thanks for making it to the end of the guide! Good luck and have fun generating fixtures for your project!

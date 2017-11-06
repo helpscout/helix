@@ -1,3 +1,0 @@
-# Faker
-
-Coming soon
