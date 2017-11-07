@@ -1,6 +1,6 @@
 # Helix 💠 [![Build Status](https://travis-ci.org/helpscout/helix.svg?branch=master)](https://travis-ci.org/helpscout/helix) [![Coverage Status](https://coveralls.io/repos/github/helpscout/helix/badge.svg?branch=master)](https://coveralls.io/github/helpscout/helix?branch=master) [![npm version](https://badge.fury.io/js/%40helpscout%2Fhelix.svg)](https://badge.fury.io/js/%40helpscout%2Fhelix)
 
-A [Faker](https://github.com/marak/Faker.js/)-powered fixture generator for Javascript.
+A fixture generator for Javascript, powered by [Faker](https://github.com/marak/Faker.js/).
 
 Helix allows you to quickly (and reliably) generate fixture data to be hydrated into Javascript components/views (like React, Vue, Backbone, etc…).
 
