@@ -1,6 +1,6 @@
 # Composing
 
-Composing is a technique that uses the `[compose](../api/compose.md)` function to easily combine multiple [HelixSpec](./HelixSpec) Specs and/or regular `objects` to create a brand new HelixSpec.
+Composing is a technique that uses the [`compose`](../api/compose.md) function to easily combine multiple [HelixSpec](./HelixSpec) Specs and/or regular `objects` to create a brand new HelixSpec.
 
 In addition to `createSpec` and `faker`, be sure to `import` `compose` as well.
 
