@@ -38,7 +38,9 @@ class HelixSpec {
       count = faker.random.number({min: count, max})
     }
 
-    const generatedSpecs = count
+    // If count was 0, max was specified, but the randomized count comes back 0, return []
+    const isArray = count || max !== undefined
+    const generatedSpecs = isArray
       ? [...Array(count)].map(() => {
         // Respect seed value for multi-generated specs
         this.seed(this.seedValue)

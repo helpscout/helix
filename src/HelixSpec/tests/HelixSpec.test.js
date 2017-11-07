@@ -32,11 +32,11 @@ describe('External', () => {
       message: faker.lorem.paragraph()
     })
 
-    times(10, (index) => {
-      const fixture = MessageSpec.seed(index).generate(1, 5)
+    times(20, (index) => {
+      const fixture = MessageSpec.seed(index).generate(0, 3)
       expect(Array.isArray(fixture)).toBeTruthy()
-      expect(fixture.length).toBeGreaterThanOrEqual(1)
-      expect(fixture.length).toBeLessThanOrEqual(5)
+      expect(fixture.length).toBeGreaterThanOrEqual(0)
+      expect(fixture.length).toBeLessThanOrEqual(3)
     })
   })
 
