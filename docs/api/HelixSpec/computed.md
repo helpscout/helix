@@ -49,10 +49,3 @@ Dinosaur.generate()
 //   fullName: 'A B I G A I L'
 // }
 ```
-
-If you want something that's less verbose that just works, check out [easy-mode](#easy-mode).
-
-
-## That's it!
-
-👏 Thanks for making it to the end of the guide! Good luck and have fun generating fixtures for your project!
