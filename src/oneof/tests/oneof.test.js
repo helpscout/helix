@@ -8,6 +8,10 @@ import { Exception } from '../../utils/log'
 describe('oneof tests', () => {
   test('Should throw if argument(s) are invalid', () => {
     expect(() => { oneof() }).toThrow()
+    expect(() => { oneof('abc') }).toThrow()
+    expect(() => { oneof({}) }).toThrow()
+    expect(() => { oneof([]) }).toThrow()
+    expect(() => { oneof([{id: 123}]) }).not.toThrow()
   })
 
   test('oneof returns a generator that returns instances of one of N options', () => {
@@ -21,7 +25,7 @@ describe('oneof tests', () => {
     // Can be either object or HelixSpec
     const Pterodactyl = Object.assign({}, dinosaurShape, { type: 'Pterodactyl' })
 
-    const RandomDinosaur = oneof(Tyrannosaurus, Stegosaurus, Pterodactyl)
+    const RandomDinosaur = oneof([Tyrannosaurus, Stegosaurus, Pterodactyl])
     let tyrannosaurusCount = 0
     let stegosaurusCount = 0
     let pterodactylCount = 0

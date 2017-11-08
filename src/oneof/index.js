@@ -11,12 +11,12 @@ import generateSpecs from '../HelixSpec/generateSpecs'
  *
  * @returns HelixSpec instance
  */
-const oneof = (...specs) => {
-  if (![...specs].length) {
+const oneof = (specs) => {
+  if (!Array.isArray(specs) || !specs.length) {
     throw new Exception('oneof', 'Argument(s) must be defined')
   }
 
-  return new HelixSpec(() => generateSpecs(faker.random.arrayElement([...specs])()))
+  return new HelixSpec(() => generateSpecs(faker.random.arrayElement(specs)()))
 }
 
 export default oneof
