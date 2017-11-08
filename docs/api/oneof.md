@@ -22,15 +22,13 @@ import { oneof, createSpec, faker } from '@helpscout/helix'
 const Tyrannosaurus = createSpec({
   id: faker.random.number(),
   type: 'meateater',
-  name: faker.name.firstName(),
-  location: faker.address.country()
+  name: faker.name.firstName()
 })
 
 const Stegosaurus = createSpec({
   id: faker.random.number(),
   type: 'planteater',
-  name: faker.name.firstName(),
-  location: faker.address.country()
+  name: faker.name.firstName()
 })
 
 const Dinosaur = oneof(Tyrannosaurus, Stegosaurus)
