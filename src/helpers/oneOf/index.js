@@ -1,7 +1,7 @@
-import HelixSpec from '../HelixSpec'
-import { Exception } from '../utils/log'
-import faker from '../faker/'
-import generateSpecs from '../HelixSpec/generateSpecs'
+import HelixSpec from '../../HelixSpec'
+import faker from '../../faker/'
+import generateSpecs from '../../HelixSpec/generateSpecs'
+import { Exception } from '../../utils/log'
 
 /**
  * Combines both HelixSpec class instance and regular objects to create a single
@@ -11,12 +11,12 @@ import generateSpecs from '../HelixSpec/generateSpecs'
  *
  * @returns HelixSpec instance
  */
-const oneof = (specs) => {
+const oneOf = (specs) => {
   if (!Array.isArray(specs) || !specs.length) {
-    throw new Exception('oneof', 'Argument(s) must be defined')
+    throw new Exception('oneOf', 'Argument(s) must be defined')
   }
 
   return new HelixSpec(() => generateSpecs(faker.random.arrayElement(specs)()))
 }
 
-export default oneof
+export default oneOf

@@ -1,6 +1,6 @@
-# `oneof(specs)`
+# `oneOf(specs)`
 
-`oneof` is a function that allows you to define a HelixSpec which returns one of a number of different specs at random.
+`oneOf` is a function that allows you to define a HelixSpec which returns one of a number of different specs at random.
 
 ### Arguments
 
@@ -17,7 +17,7 @@
 ### Example
 
 ```js
-import { oneof, createSpec, faker } from '@helpscout/helix'
+import { oneOf, createSpec, faker } from '@helpscout/helix'
 
 const Tyrannosaurus = createSpec({
   id: faker.random.number(),
@@ -31,7 +31,7 @@ const Stegosaurus = createSpec({
   name: faker.name.firstName()
 })
 
-const Dinosaur = oneof([Tyrannosaurus, Stegosaurus])
+const Dinosaur = oneOf([Tyrannosaurus, Stegosaurus])
 
 Dinosaur.generate()
 // Instance of either stegasaurus or tyrannosaurus

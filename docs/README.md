@@ -25,4 +25,4 @@ A more in-depth look at Helix's functions and methods
 * [HelixSpec](./api/HelixSpec)
 * [compose](./api/compose.md)
 * [faker](./api/faker)
-* [oneof](./api/oneof)
+* [oneOf](./api/oneOf)

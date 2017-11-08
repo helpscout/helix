@@ -1,20 +1,20 @@
-import faker from '../../faker'
-import oneof from '../'
-import HelixSpec from '../../HelixSpec/'
-import compose from '../../compose/'
 import { times } from 'lodash'
-import { Exception } from '../../utils/log'
+import oneOf from '../'
+import HelixSpec from '../../../HelixSpec'
+import compose from '../../../compose'
+import faker from '../../../faker'
+import { Exception } from '../../../utils/log'
 
-describe('oneof tests', () => {
+describe('oneOf tests', () => {
   test('Should throw if argument(s) are invalid', () => {
-    expect(() => { oneof() }).toThrow()
-    expect(() => { oneof('abc') }).toThrow()
-    expect(() => { oneof({}) }).toThrow()
-    expect(() => { oneof([]) }).toThrow()
-    expect(() => { oneof([{id: 123}]) }).not.toThrow()
+    expect(() => { oneOf() }).toThrow()
+    expect(() => { oneOf('abc') }).toThrow()
+    expect(() => { oneOf({}) }).toThrow()
+    expect(() => { oneOf([]) }).toThrow()
+    expect(() => { oneOf([{id: 123}]) }).not.toThrow()
   })
 
-  test('oneof returns a generator that returns instances of one of N options', () => {
+  test('oneOf returns a generator that returns instances of one of N options', () => {
     const dinosaurShape = {
       id: faker.random.number(),
       name: faker.name.firstName()
@@ -25,7 +25,7 @@ describe('oneof tests', () => {
     // Can be either object or HelixSpec
     const Pterodactyl = Object.assign({}, dinosaurShape, { type: 'Pterodactyl' })
 
-    const RandomDinosaur = oneof([Tyrannosaurus, Stegosaurus, Pterodactyl])
+    const RandomDinosaur = oneOf([Tyrannosaurus, Stegosaurus, Pterodactyl])
     let tyrannosaurusCount = 0
     let stegosaurusCount = 0
     let pterodactylCount = 0
