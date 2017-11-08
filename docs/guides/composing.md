@@ -108,6 +108,31 @@ MutantMechaDinosaur.generate()
 // }
 ```
 
+## Variable type Specs
+
+Sometimes, a spec needs a value which can be one of several different types. This can easily be accomplished with the `oneof` helper
+
+```js
+import { oneof, createSpec, faker } from '@helpscout/helix'
+
+const Tyrannosaurus = createSpec({
+  id: faker.random.number(),
+  type: 'meateater',
+  name: faker.name.firstName()
+})
+
+const Stegosaurus = createSpec({
+  id: faker.random.number(),
+  type: 'planteater',
+  name: faker.name.firstName()
+})
+
+const Dinosaur = oneof(Tyrannosaurus, Stegosaurus)
+
+Dinosaur.generate()
+// Instance of either stegasaurus or tyrannosaurus
+```
+
 
 ## Up next
 

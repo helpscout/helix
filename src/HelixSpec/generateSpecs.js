@@ -34,7 +34,9 @@ const generateSpecs = (shape, seedValue) => {
     return isComputedValue(shape) /* istanbul ignore next */
       ? shape(seedValue) : shape()
   }
-
+  if (shape instanceof HelixSpec) {
+    return shape.generate()
+  }
   return mapValues(shape, (value, key) => {
     // Preserve array structures
     if (isArray(value)) {
