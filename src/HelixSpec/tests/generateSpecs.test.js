@@ -29,3 +29,15 @@ test('Generates computed values', () => {
   expect(typeof o.name).toBe('string')
   expect(o.name.split(' ').length).toBe(2)
 })
+
+test('Generates single computed value', () => {
+  const props = {
+    fname: faker.name.firstName(),
+    lname: faker.name.lastName()
+  }
+  const fixture = generateSpecs(faker.computed(props)(values => {
+    return `${values.fname} ${values.lname}`
+  }))
+
+  expect(fixture.split(' ').length).toBe(2)
+})

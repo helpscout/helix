@@ -30,9 +30,7 @@ const generateSpecs = (shape, seedValue) => {
     )
   }
   if (isFunction(shape)) {
-    // Tested value(seedValue), but Istanbul isn't picking it up
-    return isComputedValue(shape) /* istanbul ignore next */
-      ? shape(seedValue) : shape()
+    return isComputedValue(shape) ? shape(seedValue) : shape()
   }
   if (shape instanceof HelixSpec) {
     return shape.generate()

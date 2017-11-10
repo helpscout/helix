@@ -30,9 +30,12 @@ const computed = faker => (props, seedValue) => computedCallback => {
       'faker.seed value must be a valid number.'
     )
   }
-  return (seedValue) => {
+  const generator = (seedValue) => {
     return computedCallback(makeComposedProps(faker)(props, seedValue))
   }
+  generator.fakerComputedValue = true
+
+  return generator
 }
 
 export default computed

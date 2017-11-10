@@ -28,7 +28,5 @@ faker.seed = (...args) => fakerLib.seed(...args)
 faker.fake = (...args) => fakerLib.fake(...args)
 
 faker.computed = computed(faker)
-// Add property that allows generate() to check for computedProperty
-faker.computed.fakerComputedValue = true
 
 export default faker
