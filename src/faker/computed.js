@@ -3,7 +3,7 @@ import {
   isPlainObject
 } from 'lodash'
 import makeComposedProps from './makeComposedProps'
-import Exception from '../utils/log'
+import { warn, Exception } from '../utils/log'
 
 /**
  * Creates a function that HelixSpec.generate can use to render computed
@@ -18,6 +18,8 @@ import Exception from '../utils/log'
  * @returns function
  */
 const computed = faker => (props, seedValue) => computedCallback => {
+  warn('Helix: faker.computed has been deprecated. Please use derived() instead.')
+
   if (!isPlainObject(props)) {
     throw new Exception(
       'faker.computed',

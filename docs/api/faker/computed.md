@@ -2,6 +2,8 @@
 
 To have more control over your computed values, you can use the `faker.computed()` method. `computed()` is a special method Helix has extended onto Faker.js, and isn't available in the default Faker.js library.
 
+**Note: `faker.computed()` has been deprecated. Please use `[derived()](../derived.md)` instead.**
+
 ### Arguments
 
 | Argument | Type | Description |
