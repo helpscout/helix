@@ -21,7 +21,7 @@ To have more control over your computed values, you can use the `derived` functi
 ### Example
 
 ```js
-import { createSpec, faker } from '@helpscout/helix'
+import { createSpec, derived, faker } from '@helpscout/helix'
 
 const Spec = createSpec({
   fname: faker.name.firstName(), // Alice
