@@ -22,5 +22,4 @@ For a **full list** of all the available Faker methods, **[check out their docum
 
 Helix has enhanced Faker with a couple of methods:
 
-* [computed](./computed.md)
 * [fake](./fake.md)
