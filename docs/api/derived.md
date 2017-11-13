@@ -2,7 +2,7 @@
 
 To have more control over your computed values, you can use the `derived` function. It provides access to existing [HelixSpec](./HelixSpec)'s Spec shape properties to create new computed outputs.
 
-**Note: `derived()` was created as a replacement for `[faker.computed](./faker/computed.md)`.**
+**Note: `derived()` was created as a replacement for [`faker.computed`](./faker/computed.md).**
 
 ### Arguments
 
