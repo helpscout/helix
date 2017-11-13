@@ -1,6 +1,7 @@
 import {
   compose,
   createSpec,
+  derived,
   faker,
   oneOf
 } from '..'
@@ -11,6 +12,10 @@ test('compose should be exported', () => {
 
 test('createSpec should be exported', () => {
   expect(createSpec).toBeTruthy()
+})
+
+test('derived should be exported', () => {
+  expect(derived).toBeTruthy()
 })
 
 test('faker should be exported', () => {

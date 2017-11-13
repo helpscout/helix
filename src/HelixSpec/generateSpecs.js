@@ -1,5 +1,6 @@
 import HelixSpec from './index'
 import { isComputedValue } from '../faker'
+import { isDerivedValue } from '../derived'
 import {
   isArray,
   isFunction,
@@ -30,14 +31,13 @@ const generateSpecs = (shape, seedValue) => {
     )
   }
   if (isFunction(shape)) {
-    // Tested value(seedValue), but Istanbul isn't picking it up
-    return isComputedValue(shape) /* istanbul ignore next */
-      ? shape(seedValue) : shape()
+    return isComputedValue(shape) ? shape(seedValue) : shape()
   }
   if (shape instanceof HelixSpec) {
     return shape.generate()
   }
-  return mapValues(shape, (value, key) => {
+  const derivedProps = {}
+  const fixture = mapValues(shape, (value, key) => {
     // Preserve array structures
     if (isArray(value)) {
       return value.map(val => generateSpecs(val))
@@ -50,12 +50,23 @@ const generateSpecs = (shape, seedValue) => {
     }
     // Instantiate!
     if (isFunction(value)) {
-      // Tested value(seedValue), but Istanbul isn't picking it up
-      return isComputedValue(value) /* istanbul ignore next */
-        ? value(seedValue) : value()
+      if (isComputedValue(value)) {
+        return value(seedValue)
+      } else if (isDerivedValue(value)) {
+        derivedProps[key] = value
+        return
+      } else {
+        return value()
+      }
     }
     return value
   })
+
+  const derivedFixture = mapValues(derivedProps, (value, key) => {
+    return value(fixture)
+  })
+
+  return Object.assign(fixture, derivedFixture)
 }
 
 export default generateSpecs
