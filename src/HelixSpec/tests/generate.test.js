@@ -48,10 +48,10 @@ test('Throw if max argument is less than count argument', () => {
 })
 
 test('Generates fixtures from a spec object', () => {
-  const person = new HelixSpec({
+  const Person = new HelixSpec({
     id: faker.random.number()
   })
-  const fixture = person.generate()
+  const fixture = Person.generate()
 
   expect(fixture.id).toBeTruthy()
 })
@@ -68,6 +68,15 @@ test('Can generate multiple specs', () => {
 
   expect(Array.isArray(fixture)).toBeTruthy()
   expect(fixture[0].id).not.toBe(fixture[1].id)
+})
+
+test('Creates an empty array if we call generate(0)', () => {
+  const Person = new HelixSpec({
+    id: faker.random.number()
+  })
+
+  const fixture = Person.generate(0)
+  expect(fixture).toEqual([])
 })
 
 test('Can generate nested un-generated spec', () => {
