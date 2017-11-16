@@ -11,7 +11,7 @@ Extends the spec shape of the HelixSpec.
 
 ### Returns
 
-`HelixSpec`: Renders itself.
+`HelixSpec`: Return itself.
 
 
 ### Example

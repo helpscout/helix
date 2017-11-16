@@ -28,5 +28,7 @@ const Dinosaur = createSpec({
 HelixSpec contains a handful of methods:
 
 * [extend](./extend.md)
+* [beforeGenerate](./beforeGenerate.md)
 * [generate](./generate.md)
+* [afterGenerate](./beforeGenerate.md)
 * [seed](./seed.md)

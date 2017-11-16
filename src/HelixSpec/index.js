@@ -1,5 +1,5 @@
 import faker from 'faker'
-import { isNumber } from 'lodash'
+import { isFunction, isNumber } from 'lodash'
 import Exception from '../utils/log'
 import generateSpecs from './generateSpecs'
 
@@ -16,11 +16,28 @@ class HelixSpec {
   constructor (shape) {
     this.shape = shape
     this.seedValue = undefined
+    this._afterGenerate = props => props
     return this
   }
 
   extend (...specs) {
     this.shape = Object.assign(this.shape, ...specs)
+    return this
+  }
+
+  beforeGenerate (callback) {
+    if (!isFunction(callback)) {
+      throw Exception('HelixSpec.beforeGenerate()', 'Argument must be a valid function.')
+    }
+    this.shape = callback(this.shape)
+    return this
+  }
+
+  afterGenerate (callback) {
+    if (!isFunction(callback)) {
+      throw Exception('HelixSpec.afterGenerate()', 'Argument must be a valid function.')
+    }
+    this._afterGenerate = callback
     return this
   }
 
@@ -48,7 +65,7 @@ class HelixSpec {
       : generateSpecs(this.shape, this.seedValue)
 
     this.seedValue = undefined
-    return generatedSpecs
+    return this._afterGenerate(generatedSpecs)
   }
 
   seed (seedValue) {
