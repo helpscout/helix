@@ -28,4 +28,3 @@ test('Can adjust shape before generating', () => {
   expect(fixture.name).toBe('Alice')
   expect(typeof fixture.number).toBe('number')
 })
-
