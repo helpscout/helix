@@ -1,9 +1,9 @@
 import { times } from 'lodash'
-import oneOf from '../'
-import HelixSpec from '../../../HelixSpec'
-import compose from '../../../compose'
-import faker from '../../../faker'
-import { Exception } from '../../../utils/log'
+import oneOf from '../index'
+import HelixSpec from '../../HelixSpec/index'
+import compose from '../../compose/index'
+import faker from '../../faker/index'
+import { Exception } from '../../utils/log'
 
 describe('oneOf tests', () => {
   test('Should throw if argument(s) are invalid', () => {

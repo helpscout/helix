@@ -30,4 +30,3 @@ test('Can adjust data after generating', () => {
   expect(fixture.number).toBe(123)
   expect(typeof fixture.prevNumber).toBe('number')
 })
-

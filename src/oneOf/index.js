@@ -1,7 +1,7 @@
-import HelixSpec from '../../HelixSpec'
-import faker from '../../faker/'
-import generateSpecs from '../../HelixSpec/generateSpecs'
-import { Exception } from '../../utils/log'
+import HelixSpec from '../HelixSpec/index'
+import faker from '../faker/index'
+import generateSpecs from '../HelixSpec/generateSpecs'
+import { Exception } from '../utils/log'
 
 /**
  * Combines both HelixSpec class instance and regular objects to create a single
