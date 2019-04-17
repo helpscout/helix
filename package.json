@@ -5,7 +5,6 @@
   "description": "A Faker-powered fixture generator for Javascript",
   "main": "lib/index.js",
   "module": "lib/index.es.js",
-  "license": "MIT",
   "scripts": {
     "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir lib --ignore *.test.js",
     "build:es": "cross-env BABEL_ENV=modules babel ./src/index.js --out-file ./lib/index.es.js --ignore *.test.js",
@@ -26,7 +25,27 @@
     "test:dev": "node scripts/test.js --env=jsdom",
     "version": "npm run build"
   },
-  "author": "ItsJonQ <itsjonq@gmail.com> (http://jonquach.com)",
+  "author": "ItsJonQ <hello@jonquach.com> (http://jonquach.com)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/helpscout/helix.git"
+  },
+  "bugs": {
+    "url": "https://github.com/helpscout/helix/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "faker",
+    "spec",
+    "compose",
+    "fixtures",
+    "helix",
+    "mock",
+    "data"
+  ],
+  "license": "MIT",
   "dependencies": {
     "faker": "4.1.0",
     "lodash": "^4.17.11"
