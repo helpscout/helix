@@ -6,7 +6,7 @@ You can do this by using the `fake()` method that comes with [Faker.js](https://
 
 | Argument | Type | Description |
 | --- | --- | --- |
-| `value` | `string` | Values to compute, indicated by `{{curly bases}}`.
+| `value` | `string` | Values to compute, indicated by `{{curly braces}}`.
 
 
 ### Returns
