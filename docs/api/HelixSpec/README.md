@@ -30,5 +30,5 @@ HelixSpec contains a handful of methods:
 * [extend](./extend.md)
 * [beforeGenerate](./beforeGenerate.md)
 * [generate](./generate.md)
-* [afterGenerate](./beforeGenerate.md)
+* [afterGenerate](./afterGenerate.md)
 * [seed](./seed.md)
