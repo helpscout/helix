@@ -13,62 +13,78 @@ import generateSpecs from './generateSpecs'
  * @returns class
  */
 class HelixSpec {
-  constructor (shape) {
+  constructor(shape) {
     this.shape = shape
     this.seedValue = undefined
     this._afterGenerate = props => props
     return this
   }
 
-  extend (...specs) {
+  extend(...specs) {
     this.shape = Object.assign(this.shape, ...specs)
     return this
   }
 
-  beforeGenerate (callback) {
+  beforeGenerate(callback) {
     if (!isFunction(callback)) {
-      throw Exception('HelixSpec.beforeGenerate()', 'Argument must be a valid function.')
+      throw Exception(
+        'HelixSpec.beforeGenerate()',
+        'Argument must be a valid function.'
+      )
     }
     this.shape = callback(this.shape)
     return this
   }
 
-  afterGenerate (callback) {
+  afterGenerate(callback) {
     if (!isFunction(callback)) {
-      throw Exception('HelixSpec.afterGenerate()', 'Argument must be a valid function.')
+      throw Exception(
+        'HelixSpec.afterGenerate()',
+        'Argument must be a valid function.'
+      )
     }
     this._afterGenerate = callback
     return this
   }
 
-  generate (count, max) {
+  generate(count, max) {
     if (!isNumber(count) && count !== undefined) {
-      throw Exception('HelixSpec.generate()', 'Argument must be a valid number.')
+      throw Exception(
+        'HelixSpec.generate()',
+        'Argument must be a valid number.'
+      )
     }
     if (max !== undefined) {
       if (!isNumber(max)) {
-        throw Exception('HelixSpec.generate()', 'Max argument must be a valid number.')
+        throw Exception(
+          'HelixSpec.generate()',
+          'Max argument must be a valid number.'
+        )
       }
       if (max <= count) {
-        throw Exception('HelixSpec.generate()', 'Max argument must be larger than count argument.')
+        throw Exception(
+          'HelixSpec.generate()',
+          'Max argument must be larger than count argument.'
+        )
       }
-      count = faker.random.number({min: count, max})
+      count = faker.random.number({ min: count, max })
     }
 
     const isArray = isNumber(count)
+    const _seedValue = this.seedValue
     const generatedSpecs = isArray
-      ? [...Array(count)].map(() => {
-        // Respect seed value for multi-generated specs
-        this.seed(this.seedValue)
-        return generateSpecs(this.shape, this.seedValue)
-      })
+      ? [...Array(count)].map((n, index) => {
+          // Respect seed value for multi-generated specs
+          this.seed(_seedValue + index)
+          return generateSpecs(this.shape, this.seedValue)
+        })
       : generateSpecs(this.shape, this.seedValue)
 
     this.seedValue = undefined
     return this._afterGenerate(generatedSpecs)
   }
 
-  seed (seedValue) {
+  seed(seedValue) {
     if (seedValue !== undefined && !isNumber(seedValue)) {
       throw new Exception(
         'HelixSpec.seed()',
