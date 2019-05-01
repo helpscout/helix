@@ -3,18 +3,26 @@ import faker from '../../faker'
 
 test('Throws if argument is invalid', () => {
   const person = new HelixSpec({
-    name: faker.name.firstName()
+    name: faker.name.firstName(),
   })
 
-  expect(() => { person.seed() }).not.toThrow()
-  expect(() => { person.seed('1') }).toThrow()
-  expect(() => { person.seed(true) }).toThrow()
-  expect(() => { person.seed({value: 2}) }).toThrow()
+  expect(() => {
+    person.seed()
+  }).not.toThrow()
+  expect(() => {
+    person.seed('1')
+  }).toThrow()
+  expect(() => {
+    person.seed(true)
+  }).toThrow()
+  expect(() => {
+    person.seed({ value: 2 })
+  }).toThrow()
 })
 
 test('Can be set', () => {
   const person = new HelixSpec({
-    name: faker.name.firstName()
+    name: faker.name.firstName(),
   })
 
   const one = person.seed(1).generate()
@@ -31,7 +39,7 @@ test('Can be set', () => {
 
 test('Is unaffected by external faker.seed', () => {
   const person = new HelixSpec({
-    name: faker.name.firstName()
+    name: faker.name.firstName(),
   })
 
   faker.seed(4)
@@ -48,16 +56,38 @@ test('Is unaffected by external faker.seed', () => {
   expect(one.name).toBe(three.name)
 })
 
-test('Can generate multiple specs, but with the same seed', () => {
+test('Can seed + generate multiple specs', () => {
   const MessageSpec = new HelixSpec({
     id: faker.random.number(),
     read: faker.random.boolean(),
     timestamp: faker.date.past(),
-    message: faker.lorem.paragraph()
+    message: faker.lorem.paragraph(),
   })
 
   const fixture = MessageSpec.seed(2).generate(5)
 
   expect(Array.isArray(fixture)).toBeTruthy()
-  expect(fixture[0].id).toBe(fixture[1].id)
+  expect(fixture[0].id).not.toBe(fixture[1].id)
+  expect(fixture[0].id).not.toBe(fixture[2].id)
+  expect(fixture[0].id).not.toBe(fixture[3].id)
+  expect(fixture[0].id).not.toBe(fixture[4].id)
+})
+
+test('Can seed + generate multiple specs with consistent seed values', () => {
+  const MessageSpec = new HelixSpec({
+    id: faker.random.number(),
+  })
+
+  const fixture = MessageSpec.seed(2).generate(5)
+
+  faker.seed(2)
+  expect(fixture[0].id).toBe(faker.random.number()())
+  faker.seed(3)
+  expect(fixture[1].id).toBe(faker.random.number()())
+  faker.seed(4)
+  expect(fixture[2].id).toBe(faker.random.number()())
+  faker.seed(5)
+  expect(fixture[3].id).toBe(faker.random.number()())
+  faker.seed(6)
+  expect(fixture[4].id).toBe(faker.random.number()())
 })
