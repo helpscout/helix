@@ -2,41 +2,38 @@
 
 A hook to adjust the shape (`object`) of the HelixSpec that is called right before the fixture is [generated](./generate.md).
 
-
 ### Arguments
 
-| Argument | Type | Description |
-| --- | --- | --- |
+| Argument   | Type       | Description                                  |
+| ---------- | ---------- | -------------------------------------------- |
 | `callback` | `function` | Callback function to adjust the Helix shape. |
-| `shape` | `object` | Helix shape passed into the `callback`. |
-
+| `shape`    | `object`   | Helix shape passed into the `callback`.      |
 
 ### Returns
 
 `HelixSpec`: Returns itself.
 
-
 ### Example
 
 ```js
 const Dinosaur = createSpec({
-  id: faker.random.number(),
+  id: faker.datatype.number(),
   name: faker.name.firstName(),
-  location: faker.address.country()
-})
+  location: faker.address.country(),
+});
 
-Dinosaur.beforeGenerate(shape => {
-  const { id, name } = shape
+Dinosaur.beforeGenerate((shape) => {
+  const { id, name } = shape;
   return {
     id,
     name,
-    location: 'Mexico',
-    status: 'Happy',
-    email: faker.internet.email()
-  }
-})
+    location: "Mexico",
+    status: "Happy",
+    email: faker.internet.email(),
+  };
+});
 
-Dinosaur.generate()
+Dinosaur.generate();
 // {
 //   id: 1231,
 //   name: 'Alice',

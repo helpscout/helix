@@ -6,12 +6,12 @@ In the example below, `myDanosawur` is a single object containing our fixture da
 
 ```js
 const Dinosaur = createSpec({
-  id: faker.random.number(),
+  id: faker.datatype.number(),
   name: faker.name.firstName(),
-  location: faker.address.country()
-})
+  location: faker.address.country(),
+});
 
-const myDanosawur = Dinosaur.generate()
+const myDanosawur = Dinosaur.generate();
 // {
 //   id: 1231,
 //   name: 'Alice',
@@ -23,12 +23,12 @@ To generate multiple fixtures, simply pass the `number` you want generated into 
 
 ```js
 const Dinosaur = createSpec({
-  id: faker.random.number(),
+  id: faker.datatype.number(),
   name: faker.name.firstName(),
-  location: faker.address.country()
-})
+  location: faker.address.country(),
+});
 
-const myDanosawurs = Dinosaur.generate(2)
+const myDanosawurs = Dinosaur.generate(2);
 // [
 //   { id: 55079, name: 'Antone', location: 'Pitcairn Islands' },
 //   { id: 83994, name: 'Eileen', location: 'Brazil' }
@@ -37,7 +37,6 @@ const myDanosawurs = Dinosaur.generate(2)
 
 Bam! Multiple Danosawurs! If a `number` is passed into `.generate()`, it will return an array of fixtures instead of a single fixture object.
 
-
 ## Generating a random amount of fixtures
 
 You can also generate an array containing a **random** amount of fixtures between two `numbers` by passing in two arguments to `.generate()`: `count` and `maxCount`.
@@ -45,14 +44,13 @@ You can also generate an array containing a **random** amount of fixtures betwee
 In the example below, we're going to be generating anywhere between `1` to `5` Danosawurs.
 
 ```js
-Dinosaur.generate(1, 5)
+Dinosaur.generate(1, 5);
 // [
 //   { id: 76619, name: 'Tess', location: 'Jordan' },
 //   { id: 60633, name: 'Madeline', location: 'Uzbekistan' },
 //   { id: 5002, name: 'Crawford', location: 'Armenia' }
 // ]
 ```
-
 
 ## Up next
 

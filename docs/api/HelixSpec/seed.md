@@ -4,15 +4,13 @@ Sets the [Faker](https://github.com/marak/Faker.js/#setting-a-randomness-seed) r
 
 ### Arguments
 
-| Argument | Type | Description |
-| --- | --- | --- |
+| Argument    | Type     | Description                                           |
+| ----------- | -------- | ----------------------------------------------------- |
 | `seedValue` | `number` | Seed value to determine the rendered fixture results. |
-
 
 ### Returns
 
 `HelixSpec`: Renders itself.
-
 
 ### Example
 
@@ -20,11 +18,11 @@ To seed your fixture, use the `.seed()` method **before** you use `.generate()`.
 
 ```js
 const Dinosaur = createSpec({
-  id: faker.random.number(),
+  id: faker.datatype.number(),
   name: faker.name.firstName(),
-  location: faker.address.country()
-})
+  location: faker.address.country(),
+});
 
-Dinosaur.seed(3).generate()
+Dinosaur.seed(3).generate();
 // { id: 55079, name: 'Antone', location: 'Pitcairn Islands' }
 ```
