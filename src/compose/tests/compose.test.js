@@ -4,18 +4,29 @@ import HelixSpec from '../../HelixSpec'
 import faker from '../../faker'
 
 test('Should throw if argument(s) are invalid', () => {
-  expect(() => { compose() }).toThrow()
-  expect(() => { compose('') }).toThrow()
-  expect(() => { compose(true) }).toThrow()
-  expect(() => { compose({}, '') }).toThrow()
+  expect(() => {
+    compose()
+  }).toThrow()
+  expect(() => {
+    compose('')
+  }).toThrow()
+  expect(() => {
+    compose(true)
+  }).toThrow()
+  expect(() => {
+    compose({}, '')
+  }).toThrow()
 })
 
 test('Can extend default objects', () => {
-  const ComposedSpec = compose({
-    fname: 'Linda'
-  }, {
-    lname: 'Lee'
-  })
+  const ComposedSpec = compose(
+    {
+      fname: 'Linda'
+    },
+    {
+      lname: 'Lee'
+    }
+  )
   const fixture = ComposedSpec.generate()
 
   expect(fixture.fname).toBe('Linda')
@@ -24,10 +35,10 @@ test('Can extend default objects', () => {
 
 test('Can combine HelixSpecs', () => {
   const PersonSpec = new HelixSpec({
-    id: faker.random.number()
+    id: faker.datatype.number()
   })
   const MessageSpec = new HelixSpec({
-    read: faker.random.boolean(),
+    read: faker.datatype.boolean(),
     timestamp: faker.date.past(),
     message: faker.lorem.paragraph()
   })
@@ -43,10 +54,10 @@ test('Can combine HelixSpecs', () => {
 
 test('Can combine HelixSpecs + objects', () => {
   const PersonSpec = new HelixSpec({
-    id: faker.random.number()
+    id: faker.datatype.number()
   })
   const MessageSpec = new HelixSpec({
-    read: faker.random.boolean(),
+    read: faker.datatype.boolean(),
     timestamp: faker.date.past(),
     message: faker.lorem.paragraph()
   })
@@ -68,7 +79,7 @@ test('Can combine HelixSpecs + objects', () => {
 
 test('Can compose 3 Specs, with other Faker methods + non-Faker methods', () => {
   const Dinosaur = createSpec({
-    id: faker.random.number(),
+    id: faker.datatype.number(),
     name: faker.name.firstName(),
     location: faker.address.country()
   })
@@ -81,15 +92,11 @@ test('Can compose 3 Specs, with other Faker methods + non-Faker methods', () => 
   })
 
   const User = createSpec({
-    uuid: faker.random.uuid(),
+    uuid: faker.datatype.uuid(),
     description: faker.lorem.sentence()
   })
 
-  const MrDinosaurUser = compose(
-    Dinosaur,
-    MrDNA,
-    User
-  )
+  const MrDinosaurUser = compose(Dinosaur, MrDNA, User)
 
   const fixture = MrDinosaurUser.generate()
 

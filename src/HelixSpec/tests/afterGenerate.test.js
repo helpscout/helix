@@ -3,19 +3,25 @@ import faker from '../../faker'
 
 test('Throw if argument is invalid', () => {
   const person = new HelixSpec({
-    id: faker.random.number()
+    id: faker.datatype.number()
   })
-  expect(() => { person.afterGenerate(true) }).toThrow()
-  expect(() => { person.afterGenerate('name') }).toThrow()
-  expect(() => { person.afterGenerate(false) }).toThrow()
+  expect(() => {
+    person.afterGenerate(true)
+  }).toThrow()
+  expect(() => {
+    person.afterGenerate('name')
+  }).toThrow()
+  expect(() => {
+    person.afterGenerate(false)
+  }).toThrow()
 })
 
 test('Can adjust data after generating', () => {
   const person = new HelixSpec({
-    id: faker.random.uuid(),
-    number: faker.random.number()
+    id: faker.datatype.uuid(),
+    number: faker.datatype.number()
   })
-  person.afterGenerate(data => {
+  person.afterGenerate((data) => {
     return {
       name: 'Alice',
       prevNumber: data.number,

@@ -3,22 +3,28 @@ import faker from '../../faker'
 
 test('Throw if argument is invalid', () => {
   const person = new HelixSpec({
-    id: faker.random.number()
+    id: faker.datatype.number()
   })
-  expect(() => { person.beforeGenerate(true) }).toThrow()
-  expect(() => { person.beforeGenerate('name') }).toThrow()
-  expect(() => { person.beforeGenerate(false) }).toThrow()
+  expect(() => {
+    person.beforeGenerate(true)
+  }).toThrow()
+  expect(() => {
+    person.beforeGenerate('name')
+  }).toThrow()
+  expect(() => {
+    person.beforeGenerate(false)
+  }).toThrow()
 })
 
 test('Can adjust shape before generating', () => {
   const person = new HelixSpec({
-    id: faker.random.uuid()
+    id: faker.datatype.uuid()
   })
   person.beforeGenerate(({ id }) => {
     return {
       id,
       name: 'Alice',
-      number: faker.random.number()
+      number: faker.datatype.number()
     }
   })
 

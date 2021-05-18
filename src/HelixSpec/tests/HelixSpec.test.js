@@ -26,8 +26,8 @@ describe('External', () => {
 
   test('Can generate min -> max specs with the same seed', () => {
     const MessageSpec = new HelixSpec({
-      id: faker.random.number(),
-      read: faker.random.boolean(),
+      id: faker.datatype.number(),
+      read: faker.datatype.boolean(),
       timestamp: faker.date.past(),
       message: faker.lorem.paragraph()
     })
@@ -46,8 +46,8 @@ describe('External', () => {
       lname: faker.name.lastName()
     }
     const PersonSpec = new HelixSpec({
-      id: faker.random.number(),
-      name: faker.computed(nameProps)(props => {
+      id: faker.datatype.number(),
+      name: faker.computed(nameProps)((props) => {
         return `${props.fname} ${props.lname}`
       })
     })

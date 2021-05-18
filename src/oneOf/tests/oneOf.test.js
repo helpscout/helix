@@ -7,23 +7,35 @@ import { Exception } from '../../utils/log'
 
 describe('oneOf tests', () => {
   test('Should throw if argument(s) are invalid', () => {
-    expect(() => { oneOf() }).toThrow()
-    expect(() => { oneOf('abc') }).toThrow()
-    expect(() => { oneOf({}) }).toThrow()
-    expect(() => { oneOf([]) }).toThrow()
-    expect(() => { oneOf([{id: 123}]) }).not.toThrow()
+    expect(() => {
+      oneOf()
+    }).toThrow()
+    expect(() => {
+      oneOf('abc')
+    }).toThrow()
+    expect(() => {
+      oneOf({})
+    }).toThrow()
+    expect(() => {
+      oneOf([])
+    }).toThrow()
+    expect(() => {
+      oneOf([{ id: 123 }])
+    }).not.toThrow()
   })
 
   test('oneOf returns a generator that returns instances of one of N options', () => {
     const dinosaurShape = {
-      id: faker.random.number(),
+      id: faker.datatype.number(),
       name: faker.name.firstName()
     }
     const Dinosaur = new HelixSpec(dinosaurShape)
     const Tyrannosaurus = compose(Dinosaur, { type: 'Tyrannosaurus' })
     const Stegosaurus = compose(Dinosaur, { type: 'Stegosaurus' })
     // Can be either object or HelixSpec
-    const Pterodactyl = Object.assign({}, dinosaurShape, { type: 'Pterodactyl' })
+    const Pterodactyl = Object.assign({}, dinosaurShape, {
+      type: 'Pterodactyl'
+    })
 
     const RandomDinosaur = oneOf([Tyrannosaurus, Stegosaurus, Pterodactyl])
     let tyrannosaurusCount = 0

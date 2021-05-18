@@ -2,12 +2,24 @@ import createSpec from '..'
 import faker from '../../faker'
 
 test('Returns false if argument is invalid', () => {
-  expect(() => { createSpec() }).toThrow()
-  expect(() => { createSpec(true) }).toThrow()
-  expect(() => { createSpec('firstName') }).toThrow()
-  expect(() => { createSpec(32) }).toThrow()
-  expect(() => { createSpec([]) }).toThrow()
-  expect(() => { createSpec(['firstName']) }).toThrow()
+  expect(() => {
+    createSpec()
+  }).toThrow()
+  expect(() => {
+    createSpec(true)
+  }).toThrow()
+  expect(() => {
+    createSpec('firstName')
+  }).toThrow()
+  expect(() => {
+    createSpec(32)
+  }).toThrow()
+  expect(() => {
+    createSpec([])
+  }).toThrow()
+  expect(() => {
+    createSpec(['firstName'])
+  }).toThrow()
 })
 
 test('Generates a simple Spec', () => {
@@ -23,7 +35,7 @@ test('Generates a Spec with multiple keys', () => {
   const Spec = createSpec({
     firstName: faker.name.firstName(),
     lastName: faker.name.firstName(),
-    id: faker.random.number(),
+    id: faker.datatype.number(),
     company: {
       name: faker.company.companyName()
     },
@@ -46,8 +58,8 @@ test('Generates a Spec with multiple keys', () => {
 
 test('Can generate nested Specs', () => {
   const MessageSpec = createSpec({
-    id: faker.random.number(),
-    read: faker.random.boolean(),
+    id: faker.datatype.number(),
+    read: faker.datatype.boolean(),
     timestamp: faker.date.past(),
     message: faker.lorem.paragraph()
   })

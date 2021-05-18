@@ -1,7 +1,7 @@
 import faker from '../'
 
 test('Methods should return functions', () => {
-  const o = faker.random.number()
+  const o = faker.datatype.number()
   const results = o()
 
   expect(typeof o).toBe('function')
@@ -11,11 +11,11 @@ test('Methods should return functions', () => {
 describe('seed', () => {
   test('Seed method should work', () => {
     faker.seed(1)
-    const one = faker.random.number()()
+    const one = faker.datatype.number()()
     faker.seed(2)
-    const two = faker.random.number()()
+    const two = faker.datatype.number()()
     faker.seed(1)
-    const three = faker.random.number()()
+    const three = faker.datatype.number()()
 
     expect(one).not.toBe(two)
     expect(two).not.toBe(three)
@@ -42,7 +42,7 @@ describe('computed', () => {
       fname: faker.name.firstName(),
       lname: faker.name.lastName()
     }
-    const value = faker.computed(props)(values => {
+    const value = faker.computed(props)((values) => {
       const { fname, lname } = values
       return `${fname} ${lname}`
     })
@@ -56,7 +56,7 @@ describe('computed', () => {
       fname: faker.name.firstName(),
       lname: faker.name.lastName()
     }
-    const value = faker.computed(props)(values => {
+    const value = faker.computed(props)((values) => {
       const { fname, lname } = values
       return `${fname} ${lname}`
     })()
@@ -69,10 +69,12 @@ describe('computed', () => {
       fname: faker.name.firstName(),
       lname: faker.name.lastName()
     }
-    const value = faker.computed(props)(values => {
-      const { fname, lname } = values
-      return `${fname} ${lname}`
-    })(2).split(' ')
+    const value = faker
+      .computed(props)((values) => {
+        const { fname, lname } = values
+        return `${fname} ${lname}`
+      })(2)
+      .split(' ')
 
     faker.seed(2)
     const fname = props.fname()
@@ -88,7 +90,7 @@ describe('computed', () => {
       fname: 'Dino',
       lname: 'Saur'
     }
-    const value = faker.computed(props)(values => {
+    const value = faker.computed(props)((values) => {
       const { fname, lname } = values
       return `${fname} ${lname}`
     })()
@@ -106,10 +108,12 @@ describe('computed', () => {
       }
     }
 
-    const value = faker.computed(props)(values => {
-      const { fname, lname } = values.vip.person
-      return `${fname} ${lname}`
-    })(2).split(' ')
+    const value = faker
+      .computed(props)((values) => {
+        const { fname, lname } = values.vip.person
+        return `${fname} ${lname}`
+      })(2)
+      .split(' ')
 
     faker.seed(2)
     const fname = props.vip.person.fname()
@@ -130,10 +134,12 @@ describe('computed', () => {
       ]
     }
 
-    const value = faker.computed(props)(values => {
-      const { fname, lname } = values.vip[0]
-      return `${fname} ${lname}`
-    })(2).split(' ')
+    const value = faker
+      .computed(props)((values) => {
+        const { fname, lname } = values.vip[0]
+        return `${fname} ${lname}`
+      })(2)
+      .split(' ')
 
     faker.seed(2)
     const fname = props.vip[0].fname()

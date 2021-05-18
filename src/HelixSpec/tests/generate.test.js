@@ -3,24 +3,38 @@ import faker from '../../faker'
 
 test('Throw if argument is invalid', () => {
   const person = new HelixSpec({
-    id: faker.random.number()
+    id: faker.datatype.number()
   })
-  expect(() => { person.generate(true) }).toThrow()
-  expect(() => { person.generate('name') }).toThrow()
-  expect(() => { person.generate(false) }).toThrow()
+  expect(() => {
+    person.generate(true)
+  }).toThrow()
+  expect(() => {
+    person.generate('name')
+  }).toThrow()
+  expect(() => {
+    person.generate(false)
+  }).toThrow()
 })
 
 test('Throw if max argument is invalid', () => {
   const person = new HelixSpec({
-    id: faker.random.number()
+    id: faker.datatype.number()
   })
-  expect(() => { person.generate(1, true) }).toThrow()
-  expect(() => { person.generate(1, 'name') }).toThrow()
-  expect(() => { person.generate(1, false) }).toThrow()
+  expect(() => {
+    person.generate(1, true)
+  }).toThrow()
+  expect(() => {
+    person.generate(1, 'name')
+  }).toThrow()
+  expect(() => {
+    person.generate(1, false)
+  }).toThrow()
 })
 
 test('Can create a spec from a single function', () => {
-  const randomNumber = new HelixSpec(faker.random.number({ min: 100, max: 103 }))
+  const randomNumber = new HelixSpec(
+    faker.datatype.number({ min: 100, max: 103 })
+  )
   const generate = randomNumber.generate()
   expect(typeof generate).toBe('number')
   expect(generate).toBeGreaterThanOrEqual(100)
@@ -28,9 +42,11 @@ test('Can create a spec from a single function', () => {
 })
 
 test('Can use single-value spec inside another Spec', () => {
-  const UserType = new HelixSpec(faker.random.arrayElement(['user', 'guest', 'admin']))
+  const UserType = new HelixSpec(
+    faker.random.arrayElement(['user', 'guest', 'admin'])
+  )
   const User = new HelixSpec({
-    id: faker.random.number(),
+    id: faker.datatype.number(),
     name: faker.name.firstName(),
     location: faker.address.country(),
     type: UserType
@@ -41,15 +57,19 @@ test('Can use single-value spec inside another Spec', () => {
 
 test('Throw if max argument is less than count argument', () => {
   const person = new HelixSpec({
-    id: faker.random.number()
+    id: faker.datatype.number()
   })
-  expect(() => { person.generate(10, 10) }).toThrow()
-  expect(() => { person.generate(10, 1) }).toThrow()
+  expect(() => {
+    person.generate(10, 10)
+  }).toThrow()
+  expect(() => {
+    person.generate(10, 1)
+  }).toThrow()
 })
 
 test('Generates fixtures from a spec object', () => {
   const Person = new HelixSpec({
-    id: faker.random.number()
+    id: faker.datatype.number()
   })
   const fixture = Person.generate()
 
@@ -58,8 +78,8 @@ test('Generates fixtures from a spec object', () => {
 
 test('Can generate multiple specs', () => {
   const MessageSpec = new HelixSpec({
-    id: faker.random.number(),
-    read: faker.random.boolean(),
+    id: faker.datatype.number(),
+    read: faker.datatype.boolean(),
     timestamp: faker.date.past(),
     message: faker.lorem.paragraph()
   })
@@ -72,7 +92,7 @@ test('Can generate multiple specs', () => {
 
 test('Creates an empty array if we call generate(0)', () => {
   const Person = new HelixSpec({
-    id: faker.random.number()
+    id: faker.datatype.number()
   })
 
   const fixture = Person.generate(0)
@@ -81,7 +101,7 @@ test('Creates an empty array if we call generate(0)', () => {
 
 test('Can generate nested un-generated spec', () => {
   const PersonSpec = new HelixSpec({
-    id: faker.random.number(),
+    id: faker.datatype.number(),
     fname: faker.name.firstName(),
     lname: faker.name.lastName()
   })

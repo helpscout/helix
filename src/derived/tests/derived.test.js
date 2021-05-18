@@ -38,8 +38,8 @@ test('Can remap over a derived array', () => {
 
 test('Derived props are invisible to each other during generate', () => {
   const Spec = createSpec({
-    chickens: faker.random.number(),
-    horses: faker.random.number(),
+    chickens: faker.datatype.number(),
+    horses: faker.datatype.number(),
     A: derived(({ B }) => typeof B === 'undefined'),
     B: derived(({ A }) => typeof A === 'undefined')
   })

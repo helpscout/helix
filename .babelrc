@@ -1,13 +1,10 @@
 {
-  "presets": ["./scripts/babel-preset-env"],
-  "env": {
-    "development": {
-      "presets": ["es2015"],
-    },
-    "umd": {
-      "plugins": [
-        "transform-es2015-modules-umd"
-      ]
-    }
-  }
+  "presets": [
+    [
+      "@babel/env",
+      {
+        "targets": ">0.25%"
+      }
+    ]
+  ]
 }

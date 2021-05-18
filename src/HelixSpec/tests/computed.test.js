@@ -7,8 +7,8 @@ test('Can generate computed values with props + callback', () => {
     lname: faker.name.lastName()
   }
   const PersonSpec = new HelixSpec({
-    id: faker.random.number(),
-    name: faker.computed(nameProps)(props => {
+    id: faker.datatype.number(),
+    name: faker.computed(nameProps)((props) => {
       return `${props.fname} ${props.lname}`
     })
   })
@@ -21,7 +21,7 @@ test('Can generate computed values with props + callback', () => {
 
 test('Can generate computed values with faker.fake', () => {
   const PersonSpec = new HelixSpec({
-    id: faker.random.number(),
+    id: faker.datatype.number(),
     name: faker.fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}')
   })
 
@@ -33,7 +33,7 @@ test('Can generate computed values with faker.fake', () => {
 
 test('Can seed and generate computed values with faker.fake', () => {
   const PersonSpec = new HelixSpec({
-    id: faker.random.number(),
+    id: faker.datatype.number(),
     name: faker.fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}')
   })
 

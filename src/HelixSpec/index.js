@@ -13,19 +13,19 @@ import generateSpecs from './generateSpecs'
  * @returns class
  */
 class HelixSpec {
-  constructor(shape) {
+  constructor (shape) {
     this.shape = shape
     this.seedValue = undefined
-    this._afterGenerate = props => props
+    this._afterGenerate = (props) => props
     return this
   }
 
-  extend(...specs) {
+  extend (...specs) {
     this.shape = Object.assign(this.shape, ...specs)
     return this
   }
 
-  beforeGenerate(callback) {
+  beforeGenerate (callback) {
     if (!isFunction(callback)) {
       throw Exception(
         'HelixSpec.beforeGenerate()',
@@ -36,7 +36,7 @@ class HelixSpec {
     return this
   }
 
-  afterGenerate(callback) {
+  afterGenerate (callback) {
     if (!isFunction(callback)) {
       throw Exception(
         'HelixSpec.afterGenerate()',
@@ -47,7 +47,7 @@ class HelixSpec {
     return this
   }
 
-  generate(count, max) {
+  generate (count, max) {
     if (!isNumber(count) && count !== undefined) {
       throw Exception(
         'HelixSpec.generate()',
@@ -67,7 +67,7 @@ class HelixSpec {
           'Max argument must be larger than count argument.'
         )
       }
-      count = faker.random.number({ min: count, max })
+      count = faker.datatype.number({ min: count, max })
     }
 
     const isArray = isNumber(count)
@@ -84,7 +84,7 @@ class HelixSpec {
     return this._afterGenerate(generatedSpecs)
   }
 
-  seed(seedValue) {
+  seed (seedValue) {
     if (seedValue !== undefined && !isNumber(seedValue)) {
       throw new Exception(
         'HelixSpec.seed()',

@@ -3,7 +3,7 @@ import faker from '../../faker'
 
 test('Can extend base specs', () => {
   const person = new HelixSpec({
-    id: faker.random.number(),
+    id: faker.datatype.number(),
     fname: 'Ava'
   })
   person.extend({
@@ -20,17 +20,21 @@ test('Can extend base specs', () => {
 
 test('Can extend base specs, multiple times', () => {
   const person = new HelixSpec({
-    id: faker.random.number(),
+    id: faker.datatype.number(),
     fname: 'Ava'
   })
-  person.extend({
-    fname: faker.name.firstName(),
-    lname: 'Smith'
-  }, {
-    count: faker.random.number()
-  }, {
-    active: true
-  })
+  person.extend(
+    {
+      fname: faker.name.firstName(),
+      lname: 'Smith'
+    },
+    {
+      count: faker.datatype.number()
+    },
+    {
+      active: true
+    }
+  )
   const fixture = person.generate()
 
   expect(typeof fixture.id).toBe('number')

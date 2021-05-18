@@ -6,18 +6,15 @@
 
 Helix allows you to quickly (and reliably) generate fixture data to be hydrated into Javascript components/views (like React, Vue, Backbone, etc…).
 
-
 ## Install
 
 ```
 npm install @helpscout/helix --save-dev
 ```
 
-
 ## Documentation
 
 Check out **[our documentation](./docs)** for more info!
-
 
 ## Basic usage
 
@@ -27,7 +24,7 @@ The `createSpec` function is used to define your fixture spec. Helix comes with 
 import { createSpec, faker } from '@helpscout/helix'
 
 const CustomerSpec = createSpec({
-  id: faker.random.number()
+  id: faker.datatype.number()
   fname: faker.name.firstName()
   lname: faker.name.lastName()
   company: faker.company.companyName()

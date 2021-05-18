@@ -4,15 +4,13 @@ You can do this by using the `fake()` method that comes with [Faker.js](https://
 
 ### Arguments
 
-| Argument | Type | Description |
-| --- | --- | --- |
-| `value` | `string` | Values to compute, indicated by `{{curly braces}}`.
-
+| Argument | Type     | Description                                         |
+| -------- | -------- | --------------------------------------------------- |
+| `value`  | `string` | Values to compute, indicated by `{{curly braces}}`. |
 
 ### Returns
 
 `string`: Returns a string with computed values.
-
 
 ### Example
 
@@ -20,14 +18,14 @@ Simply pass a string into `faker.fake()`, and add the faker methods with `{{curl
 Just a heads up, don't add `faker.` in front of the computed methods, and don't instantiate them.
 
 ```js
-import { createSpec, faker } from '@helpscout/helix'
+import { createSpec, faker } from "@helpscout/helix";
 
 const Dinosaur = createSpec({
-  id: faker.random.number(),
-  fullName: faker.fake('{{name.firstName}} {{name.lastName}}')
-})
+  id: faker.datatype.number(),
+  fullName: faker.fake("{{name.firstName}} {{name.lastName}}"),
+});
 
-Dinosaur.generate()
+Dinosaur.generate();
 // {
 //   id: 324191,
 //   fullName: 'Sauna Marks'

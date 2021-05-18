@@ -4,15 +4,13 @@ Extends the spec shape of the HelixSpec.
 
 ### Arguments
 
-| Argument | Type | Description |
-| --- | --- | --- |
-| `specs` | `object` | Merges the additional objects with the initial spec object. |
-
+| Argument | Type     | Description                                                 |
+| -------- | -------- | ----------------------------------------------------------- |
+| `specs`  | `object` | Merges the additional objects with the initial spec object. |
 
 ### Returns
 
 `HelixSpec`: Return itself.
-
 
 ### Example
 
@@ -20,19 +18,19 @@ To extend the initial spec shape, pass in a new `object` as an argument. Additio
 
 ```js
 const Dinosaur = createSpec({
-  id: faker.random.number(),
+  id: faker.datatype.number(),
   name: faker.name.firstName(),
-  location: faker.address.country()
-})
+  location: faker.address.country(),
+});
 
 Dinosaur.extend({
-  company: 'Jurassic Parkland',
-  color: faker.commerce.color()
-})
+  company: "Jurassic Parkland",
+  color: faker.commerce.color(),
+});
 
 // Dinosaur's spec shape will now be:
 // {
-//   id: faker.random.number(),
+//   id: faker.datatype.number(),
 //   name: faker.name.firstName(),
 //   location: faker.address.country(),
 //   company: 'Jurassic Parkland',

@@ -4,35 +4,33 @@
 
 ### Arguments
 
-| Argument | Type | Description |
-| --- | --- | --- |
-| `specs` | array of `HelixSpec`s or `object`s | Array of `HelixSpec` classes and/or objects shapes to choose from. |
-
+| Argument | Type                               | Description                                                        |
+| -------- | ---------------------------------- | ------------------------------------------------------------------ |
+| `specs`  | array of `HelixSpec`s or `object`s | Array of `HelixSpec` classes and/or objects shapes to choose from. |
 
 ### Returns
 
 `HelixSpec`: Renders a single [HelixSpec](./HelixSpec) class.
 
-
 ### Example
 
 ```js
-import { oneOf, createSpec, faker } from '@helpscout/helix'
+import { oneOf, createSpec, faker } from "@helpscout/helix";
 
 const Tyrannosaurus = createSpec({
-  id: faker.random.number(),
-  type: 'meateater',
-  name: faker.name.firstName()
-})
+  id: faker.datatype.number(),
+  type: "meateater",
+  name: faker.name.firstName(),
+});
 
 const Stegosaurus = createSpec({
-  id: faker.random.number(),
-  type: 'planteater',
-  name: faker.name.firstName()
-})
+  id: faker.datatype.number(),
+  type: "planteater",
+  name: faker.name.firstName(),
+});
 
-const Dinosaur = oneOf([Tyrannosaurus, Stegosaurus])
+const Dinosaur = oneOf([Tyrannosaurus, Stegosaurus]);
 
-Dinosaur.generate()
+Dinosaur.generate();
 // Instance of either stegasaurus or tyrannosaurus
 ```

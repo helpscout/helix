@@ -1,5 +1,5 @@
 import generateSpecs from '../generateSpecs'
-import { default as faker } from '../../faker'
+import faker from '../../faker'
 
 test('Throws if argument is invalid', () => {
   expect(() => generateSpecs()).toThrow()
@@ -19,7 +19,7 @@ test('Generates computed values', () => {
     lname: faker.name.lastName()
   }
   const shape = {
-    name: faker.computed(nameProps)(props => {
+    name: faker.computed(nameProps)((props) => {
       return `${props.fname} ${props.lname}`
     })
   }
@@ -35,9 +35,11 @@ test('Generates single computed value', () => {
     fname: faker.name.firstName(),
     lname: faker.name.lastName()
   }
-  const fixture = generateSpecs(faker.computed(props)(values => {
-    return `${values.fname} ${values.lname}`
-  }))
+  const fixture = generateSpecs(
+    faker.computed(props)((values) => {
+      return `${values.fname} ${values.lname}`
+    })
+  )
 
   expect(fixture.split(' ').length).toBe(2)
 })

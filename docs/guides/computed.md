@@ -2,9 +2,8 @@
 
 Being able to create computed values adds **extra** flexibility to generating your fixtures. With Helix, there are two ways you can do this:
 
-* "**[Easy-mode](#easy-mode)**": Straight forward. Works. Less code. Less flexibility.
-* "**[Hard-mode](#hard-mode)**": Slightly more code. Ultimate flexibility!
-
+- "**[Easy-mode](#easy-mode)**": Straight forward. Works. Less code. Less flexibility.
+- "**[Hard-mode](#hard-mode)**": Slightly more code. Ultimate flexibility!
 
 ## Easy-mode
 
@@ -14,14 +13,14 @@ Simply pass a string into `faker.fake()`, and add the faker methods with `{{curl
 Just a heads up, don't add `faker.` in front of the computed methods, and don't instantiate them.
 
 ```js
-import { createSpec, faker } from '@helpscout/helix'
+import { createSpec, faker } from "@helpscout/helix";
 
 const Dinosaur = createSpec({
-  id: faker.random.number(),
-  fullName: faker.fake('{{name.firstName}} {{name.lastName}}')
-})
+  id: faker.datatype.number(),
+  fullName: faker.fake("{{name.firstName}} {{name.lastName}}"),
+});
 
-Dinosaur.generate()
+Dinosaur.generate();
 // {
 //   id: 324191,
 //   fullName: 'Sauna Marks'
@@ -29,7 +28,6 @@ Dinosaur.generate()
 ```
 
 If you want something that's more flexible with **ultimate control**, check out [hard-mode](#hard-mode).
-
 
 ## Hard-mode
 
@@ -45,7 +43,7 @@ const props = {
 }
 
 const Dinosaur = createSpec({
-  id: faker.random.number(),
+  id: faker.datatype.number(),
   firstName: faker.name.firstName(),
   lastName: faker.name.lastName(),
   fancyName: derived((props => {
@@ -64,7 +62,6 @@ Dinosaur.generate()
 ```
 
 If you want something that's less verbose that just works, check out [easy-mode](#easy-mode).
-
 
 ## That's it!
 

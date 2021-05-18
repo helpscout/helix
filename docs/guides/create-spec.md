@@ -12,16 +12,16 @@ Let's create a `Dinosaur` 🦎
 
 ```js
 const Dinosaur = createSpec({
-  id: faker.random.number(),
+  id: faker.datatype.number(),
   name: faker.name.firstName(),
-  location: faker.address.country()
-})
+  location: faker.address.country(),
+});
 ```
 
 Perfect! Just like that, we've defined our `Dinosaur` (Dino DNA!). However, if you `console.log` it, you'll noticed that it doesn't actually have any fixture data (yet).
 
 ```js
-console.log(Dinosaur)
+console.log(Dinosaur);
 // { id: [Function], name: [Function], location: [Function] }
 ```
 
@@ -29,33 +29,33 @@ The default Faker methods would have rendered some nice fixture data for you the
 
 The actually render the fixture data, we'll need to generate it.
 
-
 ## Single-value Specs
 
 You can also create a HelixSpec which generates a single value. For example, if you have a data type `DinoType` with a set of constant values, you can create a spec to capture this like so:
 
 ```js
-const DinoType = createSpec(faker.random.arrayElement([
-  'tyrannosaurus-rex',
-  'velocirapter',
-  'stegosaurus'
-]))
+const DinoType = createSpec(
+  faker.random.arrayElement([
+    "tyrannosaurus-rex",
+    "velocirapter",
+    "stegosaurus",
+  ])
+);
 
 const Dinosaur = createSpec({
-  id: faker.random.number(),
+  id: faker.datatype.number(),
   name: faker.name.firstName(),
   location: faker.address.country(),
-  type: DinoType
-})
+  type: DinoType,
+});
 ```
-
 
 ## Generating fixture data
 
 To generate the fixture data, use the `.generate()` method on your Spec. This returns a regular object in the shape of your Spec.
 
 ```js
-Dinosaur.generate()
+Dinosaur.generate();
 // {
 //   id: 1231,
 //   name: 'Alice',
@@ -66,14 +66,14 @@ Dinosaur.generate()
 Because of how Faker works, you'll get a different result every time you `generate()`
 
 ```js
-Dinosaur.generate()
+Dinosaur.generate();
 // {
 //   id: 1231,
 //   name: 'Alice',
 //   location: 'Canada'
 // }
 
-Dinosaur.generate()
+Dinosaur.generate();
 // {
 //   id: 5573213,
 //   name: 'Tim',
@@ -84,7 +84,7 @@ Dinosaur.generate()
 To keep your fixture, you can cache it as a regular JS variable:
 
 ```js
-const myDanosawur = Dinosaur.generate()
+const myDanosawur = Dinosaur.generate();
 // {
 //   id: 1231,
 //   name: 'Alice',
@@ -94,8 +94,7 @@ const myDanosawur = Dinosaur.generate()
 // myDanosawr.name will always be Alice!
 ```
 
-And that's it! You've generated some fixture data for your Dinosaur. 
-
+And that's it! You've generated some fixture data for your Dinosaur.
 
 ## Up next
 

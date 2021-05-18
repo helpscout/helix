@@ -4,47 +4,41 @@ Compose is a function that allows you to easily combine multiple [HelixSpec](./H
 
 ### Arguments
 
-| Argument | Type | Description |
-| --- | --- | --- |
-| `specs` | `HelixSpec` or `object` | HelixSpec classes and/or objects to combine together. |
-
+| Argument | Type                    | Description                                           |
+| -------- | ----------------------- | ----------------------------------------------------- |
+| `specs`  | `HelixSpec` or `object` | HelixSpec classes and/or objects to combine together. |
 
 ### Returns
 
 `HelixSpec`: Renders a single [HelixSpec](./HelixSpec) class.
 
-
 ### Example
 
 ```js
-import { compose, createSpec, faker } from '@helpscout/helix'
+import { compose, createSpec, faker } from "@helpscout/helix";
 
 const Dinosaur = createSpec({
-  id: faker.random.number(),
+  id: faker.datatype.number(),
   name: faker.name.firstName(),
-  location: faker.address.country()
-})
+  location: faker.address.country(),
+});
 
 const MrDNA = createSpec({
-  name: 'Mr. DNA',
+  name: "Mr. DNA",
   avatar: faker.image.avatar(),
   email: faker.internet.email(),
-  jobTitle: 'Guide'
-})
+  jobTitle: "Guide",
+});
 
 const User = createSpec({
-  uuid: faker.random.uuid(),
-  description: faker.lorem.sentence()
-})
+  uuid: faker.datatype.uuid(),
+  description: faker.lorem.sentence(),
+});
 
-const MrDinosaurUser = compose(
-  Dinosaur,
-  MrDNA,
-  User
-)
+const MrDinosaurUser = compose(Dinosaur, MrDNA, User);
 
-MrDinosaurUser.generate()
-// { 
+MrDinosaurUser.generate();
+// {
 //   id: 18482,
 //   name: 'Mr. DNA',
 //   location: 'Malawi',
