@@ -5,7 +5,7 @@
   "description": "A Faker-powered fixture generator for Javascript",
   "main": "lib/index.js",
   "scripts": {
-    "build:js": "cross-env babel ./src/index.js --out-file ./lib/index.js --ignore *.test.js",
+    "build:js": "cross-env babel src --out-dir lib --ignore tests,**/*.test.js",
     "build": "npm run clean && npm run pretty && npm run build:js",
     "clean": "rimraf coverage lib es dist",
     "coverage": "nyc report --temp-directory=coverage --reporter=text-lcov | coveralls",
