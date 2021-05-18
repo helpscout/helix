@@ -12,6 +12,7 @@
     "dev": "npm run test:dev",
     "standard": "standard 'src/**/*.js'",
     "pretty": "npm run standard -- --fix",
+    "release:beta": "np --yolo --any-branch",
     "release:patch": "np patch --no-yarn",
     "release:minor": "np minor --no-yarn",
     "release:major": "np major --no-yarn",
