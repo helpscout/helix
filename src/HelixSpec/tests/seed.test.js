@@ -3,7 +3,7 @@ import faker from '../../faker'
 
 test('Throws if argument is invalid', () => {
   const person = new HelixSpec({
-    name: faker.name.firstName(),
+    name: faker.name.firstName()
   })
 
   expect(() => {
@@ -22,7 +22,7 @@ test('Throws if argument is invalid', () => {
 
 test('Can be set', () => {
   const person = new HelixSpec({
-    name: faker.name.firstName(),
+    name: faker.name.firstName()
   })
 
   const one = person.seed(1).generate()
@@ -39,7 +39,7 @@ test('Can be set', () => {
 
 test('Is unaffected by external faker.seed', () => {
   const person = new HelixSpec({
-    name: faker.name.firstName(),
+    name: faker.name.firstName()
   })
 
   faker.seed(4)
@@ -61,7 +61,7 @@ test('Can seed + generate multiple specs', () => {
     id: faker.random.number(),
     read: faker.random.boolean(),
     timestamp: faker.date.past(),
-    message: faker.lorem.paragraph(),
+    message: faker.lorem.paragraph()
   })
 
   const fixture = MessageSpec.seed(2).generate(5)
@@ -75,7 +75,7 @@ test('Can seed + generate multiple specs', () => {
 
 test('Can seed + generate multiple specs with consistent seed values', () => {
   const MessageSpec = new HelixSpec({
-    id: faker.random.number(),
+    id: faker.random.number()
   })
 
   const fixture = MessageSpec.seed(2).generate(5)

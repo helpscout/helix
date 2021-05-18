@@ -11,7 +11,7 @@ describe('oneOf tests', () => {
     expect(() => { oneOf('abc') }).toThrow()
     expect(() => { oneOf({}) }).toThrow()
     expect(() => { oneOf([]) }).toThrow()
-    expect(() => { oneOf([{id: 123}]) }).not.toThrow()
+    expect(() => { oneOf([{ id: 123 }]) }).not.toThrow()
   })
 
   test('oneOf returns a generator that returns instances of one of N options', () => {
